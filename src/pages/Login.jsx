@@ -1,6 +1,7 @@
 //import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import pharmaseeLogo from '../components/pharmaseeLogo.png';
+import pharmaseeLogo from '../components/pharmaseeLogo.png';
+import pharmaseeName from '../components/pharmasee.png';
 
 import {
     Flex,
@@ -11,8 +12,7 @@ import {
     Box,
     FormControl,
     FormHelperText,
-    ChakraProvider,
-    extendTheme
+    Image
   } from "@chakra-ui/react";
   
 
@@ -41,41 +41,43 @@ const Login = () => {
 
     return (
         <>
-            {/* <Flex
-            flexDirection="column"
-            width="40wh"
-            height="100vh"
-            backgroundColor="white"
-            justifyContent="center"
-            alignItems="center">
-                {/* <img src={pharmaseeLogo} alt=""> </img> */}
-            {/* </Flex> */}
             <Flex
-            flexDirection="column"
+            flexDirection="row"
             width="60wh"
             height="100vh"
             backgroundColor="white"
-            justifyContent="center"
-            alignItems="center"
+            justify-content = "space-around"
+            //justifyContent="center"
+            //alignItems="center"
             > 
-            <Box>
 
+            <Box bg="#44accf" minW={{base:"40%"}}>
             </Box>
+
             <Stack
-            flexDir="column"
-            mb="2"
+            //pl = "8vw"
             justifyContent="center"
             alignItems="center"
+            minW = {{base:"40%"}}
+            flexDir="column"
+            //m="2"
             >
+            <Box>
+            <Image src={pharmaseeLogo} alt='cute pill' width="125px" height="125px"/>
+            </Box>
 
-            <Heading color="#44ACCF">Login</Heading>
-            <Box minW={{ base: "90%", md: "468px" }}>
-                <form>
+            <Box>
+            <Image src={pharmaseeName} alt='website name' width = "30vw"/>
+            </Box>
+
+            <Box minW={{ base: "100%"}} >
+                <form >
                 <Stack
                     spacing={4}
                     p="1rem"
                     backgroundColor="whiteAlpha.900"
-                    boxShadow="md"
+                    boxShadow="base"
+                    rounded = "md"
                 >
                     <FormControl>
                         <Input type="username" placeholder="Hospital username" />
@@ -86,6 +88,7 @@ const Login = () => {
                         <p>forgot password?</p>
                     </FormHelperText>
                     </FormControl>
+
                     <Button
                     borderRadius={0}
                     type="submit"
@@ -95,8 +98,9 @@ const Login = () => {
                     width="full"
                     onClick={handleClick}
                     >
-                    Login
+                        Login
                     </Button>
+
                 </Stack>
                 </form>
             </Box>
