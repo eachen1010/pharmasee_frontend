@@ -42,20 +42,24 @@ const PatientSearch = () => {
     const getPatients = async () => {
         try {
             const res = await Backend.get(`/patients`);
-            console.log(res)
+            console.log('Response:', res.data);
+
             setPatients(res.data);
-            console.log(patients.data);
-            return res;
+
+            console.log('Patients after update:', patients);
+
+            return res.data;
           } catch (err) {
             console.log(err);
           }
     };
 
     const PatientTableEntry = ( {patient} ) => {
+        console.log(`!!!!!!!!!!!!!!!${typeof(patient)}`)
         return (
             <Tr justifyContent="space-evenly">
-                <Td>{patient.firstName} {patient.lastName}</Td>
                 <Td>{patient.mrn}</Td>
+                <Td>{patient.firstName} {patient.lastName}</Td>
                 <Td>
                     <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
                 </Td>
@@ -64,8 +68,10 @@ const PatientSearch = () => {
     };
 
     useEffect(() => {
-        getPatients();
-      }, []);
+        getPatients().then(updatedPatients => {
+            console.log('Patients after update:', updatedPatients);
+        });
+    }, []);
     
     return (
         <>
@@ -89,50 +95,29 @@ const PatientSearch = () => {
                         <InputLeftElement pointerEvents='none'>
                         <Search2Icon color='gray.300' />
                         </InputLeftElement>
-                        <Input width='18vw' placeholder='Enter Patient MRN' />
+                        <Input width='59vw' placeholder='Enter Patient Name' />
                     </InputGroup>
                     <InputGroup>
                         <InputLeftElement pointerEvents='none'>
                         <Search2Icon color='gray.300' />
                         </InputLeftElement>
-                        <Input width='59vw' placeholder='Enter Patient Name' />
+                        <Input width='15vw' placeholder='Enter Patient MRN' />
                     </InputGroup>
                     <InputGroup>
-                        <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
+                        <Button backgroundColor="#44ACCF"><Search2Icon style={{ color: 'white' }} /></Button>
                     </InputGroup>
                 </Stack>
                 <TableContainer width='81vw' marginTop='5vh'>
                     <Table variant='simple' >
                     <Thead style={{ backgroundColor: '#44ACCF' }}>
                     <Tr>
-                        <Th style={{ color: 'white' }}>Patient Name</Th>
                         <Th style={{ color: 'white' }}>MRN</Th>
+                        <Th style={{ color: 'white' }}>Patient Name</Th>
                         <Th style={{ color: 'white' }}></Th>
                     </Tr>
                     </Thead>
                     <Tbody >
-                        {/* {patients.map(patient => (<PatientTableEntry key={patient.mrn}/>))} */}
-                        <Tr justifyContent="space-evenly">
-                            <Td>Alyssia Tan</Td>
-                            <Td>592841</Td>
-                            <Td> 
-                                <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
-                            </Td>
-                        </Tr>
-                        <Tr>
-                            <Td>Ethan Ho</Td>
-                            <Td>592842</Td>
-                            <Td  alignItems='right'> 
-                                <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
-                            </Td>
-                        </Tr>
-                        <Tr>
-                            <Td>Gayathri Yedavilli</Td>
-                            <Td>592843</Td>
-                            <Td> 
-                                <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
-                            </Td>
-                        </Tr>
+                        {patients.map(patient => (<PatientTableEntry patient={patient} />))}
                     </Tbody>
                     </Table>
                 </TableContainer>
