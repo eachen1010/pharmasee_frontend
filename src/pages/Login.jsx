@@ -1,4 +1,5 @@
-// import { useState } from 'react';
+//import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import pharmaseeLogo from '../components/pharmaseeLogo.png';
 
 import {
@@ -14,6 +15,26 @@ import {
   
 
 const Login = () => {
+
+    const navigate = useNavigate();
+    //const [error, setError] = useState('');
+
+    // useEffect(() => {
+    //     if(currentUser)
+    //     {
+    //         navigate('/search');
+    //     };
+    //   });
+
+    const handleClick = async data => {
+        //const { username, password } = data;
+        try {
+          navigate('/search');
+          //reset();
+        } catch (e) {
+          console.log(e);//setError('Failed to log in');
+        }
+      };
 
     return (
         <>
@@ -33,7 +54,7 @@ const Login = () => {
             backgroundColor="white"
             justifyContent="center"
             alignItems="center"
-            >
+            > 
             <Stack
             flexDir="column"
             mb="2"
@@ -65,6 +86,7 @@ const Login = () => {
                     variant="solid"
                     colorScheme="teal"
                     width="full"
+                    onClick={handleClick}
                     >
                     Login
                     </Button>
