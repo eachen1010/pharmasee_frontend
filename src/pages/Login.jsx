@@ -81,7 +81,7 @@ const Login = () => {
                     justifyContent = "center"
                 >
                     <FormControl justifyContent = "center">
-                        <Input type="username" placeholder="Hospital username" />
+                        <Input type="username" placeholder="Organization Username" />
                     </FormControl>
                     <FormControl>
                         <Input type={"password"} placeholder="Password"/>
