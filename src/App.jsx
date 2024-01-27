@@ -2,6 +2,7 @@
 import * as React from 'react'
 import Login from './pages/Login';
 import PatientSearch from './pages/PatientSearch';
+import DrugSearch from './pages/DrugSearch';
 import { ChakraProvider } from '@chakra-ui/react'
 import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
@@ -14,6 +15,7 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/search" element={<PatientSearch />} />
+          <Route path="/search-drug" element={<DrugSearch />} />
         </Routes>
       </Router>
     </ChakraProvider>
