@@ -1,0 +1,15 @@
+
+
+.iconStyle {
+    width: '20px'; 
+    height: '20px'; 
+    margin-Right: '5px';
+};
+
+.navbar {
+/* height: 72px; */
+color: #7C4E46;
+background-color: var(--cds-blue-1);
+display: flex;
+flex-direction: space-between;
+}

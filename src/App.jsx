@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import * as React from 'react'
 import Login from './pages/Login';
+import Navbar from './components/Navbar';
 import PatientSearch from './pages/PatientSearch';
 import { ChakraProvider } from '@chakra-ui/react'
 import './App.css';
@@ -10,6 +11,7 @@ const App = () => {
 
   return (
     <ChakraProvider>
+      <Navbar />
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
