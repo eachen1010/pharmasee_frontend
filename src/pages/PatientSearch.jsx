@@ -74,24 +74,28 @@ const PatientSearch = () => {
             >
             <Flex 
             flexDirection="column"
-            width="95vw"
+            width="90vw"
             height="80vh"
             alignItems="center"
             >
-                <Stack spacing={10} direction="row" width='auto' justifyContent="space-evenly">
-                <InputGroup>
-                    <InputLeftElement pointerEvents='none'>
-                    <Search2Icon color='gray.300' />
-                    </InputLeftElement>
-                    <Input width='59vw' placeholder='Enter Patient Name' marginRight='1vw' />
-                    <InputLeftElement pointerEvents='none'>
-                    <Search2Icon color='gray.300' />
-                    </InputLeftElement>
-                    <Input width='18vw' placeholder='Enter Patient MRN' />
-                    <Button backgroundColor="#7C4E46"><BsFunnel style={{ color: 'white' }} /></Button>
-                </InputGroup>
+                <Stack spacing={2} direction="row" width='auto' justifyContent="space-evenly">
+                    <InputGroup>
+                        <InputLeftElement pointerEvents='none'>
+                        <Search2Icon color='gray.300' />
+                        </InputLeftElement>
+                        <Input width='59vw' placeholder='Enter Patient Name' />
+                    </InputGroup>
+                    <InputGroup>
+                        <InputLeftElement pointerEvents='none'>
+                        <Search2Icon color='gray.300' />
+                        </InputLeftElement>
+                        <Input width='18vw' placeholder='Enter Patient MRN' />
+                    </InputGroup>
+                    <InputGroup>
+                        <Button backgroundColor="#7C4E46"><BsFunnel style={{ color: 'white' }} /></Button>
+                    </InputGroup>
                 </Stack>
-                <TableContainer width='80vw' marginTop='5vh'>
+                <TableContainer width='81vw' marginTop='5vh'>
                     <Table variant='simple'>
                         <Thead style={{ backgroundColor: '#7C4E46' }}>
                         <Tr>
