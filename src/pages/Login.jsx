@@ -11,6 +11,8 @@ import {
     Box,
     FormControl,
     FormHelperText,
+    ChakraProvider,
+    extendTheme
   } from "@chakra-ui/react";
   
 
@@ -36,6 +38,7 @@ const Login = () => {
         }
       };
 
+
     return (
         <>
             {/* <Flex
@@ -55,6 +58,9 @@ const Login = () => {
             justifyContent="center"
             alignItems="center"
             > 
+            <Box>
+
+            </Box>
             <Stack
             flexDir="column"
             mb="2"
@@ -62,7 +68,7 @@ const Login = () => {
             alignItems="center"
             >
 
-            <Heading color="teal.400">Login</Heading>
+            <Heading color="#44ACCF">Login</Heading>
             <Box minW={{ base: "90%", md: "468px" }}>
                 <form>
                 <Stack
@@ -84,7 +90,8 @@ const Login = () => {
                     borderRadius={0}
                     type="submit"
                     variant="solid"
-                    colorScheme="teal"
+                    colorScheme='blue'
+                    backgroundColor = "#44accf"
                     width="full"
                     onClick={handleClick}
                     >
