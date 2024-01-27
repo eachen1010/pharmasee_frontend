@@ -5,7 +5,6 @@ import pharmaseeName from '../components/pharmasee.png';
 
 import {
     Flex,
-    Heading,
     Input,
     Button,
     Stack,
@@ -43,10 +42,9 @@ const Login = () => {
         <>
             <Flex
             flexDirection="row"
-            width="60wh"
+            width="100wh"
             height="100vh"
             backgroundColor="white"
-            justify-content = "space-around"
             //justifyContent="center"
             //alignItems="center"
             > 
@@ -55,10 +53,9 @@ const Login = () => {
             </Box>
 
             <Stack
-            //pl = "8vw"
             justifyContent="center"
             alignItems="center"
-            minW = {{base:"40%"}}
+            minW = {{base:"60%"}}
             flexDir="column"
             //m="2"
             >
@@ -70,16 +67,20 @@ const Login = () => {
             <Image src={pharmaseeName} alt='website name' width = "30vw"/>
             </Box>
 
-            <Box minW={{ base: "100%"}} >
+            <Box minW={{ base: "50%"}}>
                 <form >
                 <Stack
+                   // maxW = {{base:"60%"}}
+                    //maxW = "10vw"
                     spacing={4}
-                    p="1rem"
                     backgroundColor="whiteAlpha.900"
                     boxShadow="base"
                     rounded = "md"
+                    padding = "20px"
+                    alignItems = "center"
+                    justifyContent = "center"
                 >
-                    <FormControl>
+                    <FormControl justifyContent = "center">
                         <Input type="username" placeholder="Hospital username" />
                     </FormControl>
                     <FormControl>
