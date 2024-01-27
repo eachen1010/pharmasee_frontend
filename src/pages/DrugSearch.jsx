@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Navbar from '../components/Navbar'
 // import Backend from '../../utils.js';
 // import Fuse from 'fuse.js';
 import {
@@ -24,6 +25,7 @@ import {
     chakra,
     Box,
     Radio,
+    Text,
     RadioGroup,
     Link,
     Avatar,
@@ -68,6 +70,7 @@ const DrugSearch = () => {
     
     return (
         <>
+            <Navbar />
             <Flex
             flexDirection="column"
             width="100vw"
@@ -82,6 +85,24 @@ const DrugSearch = () => {
             height="80vh"
             alignItems="center"
             >
+                <Text fontSize='5xl'>John Doe</Text>
+                <Stack spacing={4} direction='row' justifyContent="space-evenly">
+                    <HStack spacing={4}>
+                        {['md'].map((size) => (
+                            <Tag size={size} key={size} variant='subtle' colorScheme='green'>
+                                <TagLabel>DOB: 07/27/1975</TagLabel>
+                            </Tag>
+                        ))}
+                    </HStack>
+                    <HStack spacing={4}>
+                        {['md'].map((size) => (
+                            <Tag size={size} key={size} variant='subtle' colorScheme='purple'>
+                                <TagLabel>Kaiser Permanente</TagLabel>
+                            </Tag>
+                        ))}
+                    </HStack>
+                </Stack>
+                
                 <Stack spacing={2} direction="row" width='auto' justifyContent="space-evenly">
                     <InputGroup>
                         <InputLeftElement pointerEvents='none'>
@@ -89,7 +110,6 @@ const DrugSearch = () => {
                         </InputLeftElement>
                         <Input width='81vw' placeholder='Enter Drug Name' />
                     </InputGroup>
-                    
                 </Stack>
                 <TableContainer width='81vw' marginTop='5vh'>
                     <Table variant='unstyled'>
