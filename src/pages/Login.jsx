@@ -1,34 +1,36 @@
 // import { useState } from 'react';
+// import pharmaseeLogo from '../components/pharmaseeLogo.png';
+
 import {
     Flex,
     Heading,
     Input,
     Button,
-    InputGroup,
     Stack,
-    InputLeftElement,
-    chakra,
     Box,
-    Link,
-    Avatar,
     FormControl,
     FormHelperText,
-    InputRightElement
   } from "@chakra-ui/react";
-  import { FaUserAlt, FaLock } from "react-icons/fa";
   
-  const CFaUserAlt = chakra(FaUserAlt);
-  const CFaLock = chakra(FaLock);  
 
 const Login = () => {
-    
+
     return (
         <>
+            {/* <Flex
+            flexDirection="column"
+            width="40wh"
+            height="100vh"
+            backgroundColor="white"
+            justifyContent="center"
+            alignItems="center">
+                {/* <img src={pharmaseeLogo} alt=""> </img> */}
+            {/* </Flex> */}
             <Flex
             flexDirection="column"
-            width="100wh"
+            width="60wh"
             height="100vh"
-            backgroundColor="gray.200"
+            backgroundColor="white"
             justifyContent="center"
             alignItems="center"
             >
@@ -38,8 +40,8 @@ const Login = () => {
             justifyContent="center"
             alignItems="center"
             >
-            <Avatar bg="teal.500" />
-            <Heading color="teal.400">Welcome</Heading>
+
+            <Heading color="teal.400">Login</Heading>
             <Box minW={{ base: "90%", md: "468px" }}>
                 <form>
                 <Stack
@@ -49,30 +51,12 @@ const Login = () => {
                     boxShadow="md"
                 >
                     <FormControl>
-                    <InputGroup>
-                        <InputLeftElement
-                        pointerEvents="none"
-                        children={<CFaUserAlt color="gray.300" />}
-                        />
-                        <Input type="email" placeholder="email address" />
-                    </InputGroup>
+                        <Input type="username" placeholder="Hospital username" />
                     </FormControl>
                     <FormControl>
-                    <InputGroup>
-                        <InputLeftElement
-                        pointerEvents="none"
-                        color="gray.300"
-                        children={<CFaLock color="gray.300" />}
-                        />
-                        <Input
-                        type={"password"}
-                        placeholder="Password"
-                        />
-                        <InputRightElement width="4.5rem">
-                        </InputRightElement>
-                    </InputGroup>
+                        <Input type={"password"} placeholder="Password"/>
                     <FormHelperText textAlign="right">
-                        <Link>forgot password?</Link>
+                        <p>forgot password?</p>
                     </FormHelperText>
                     </FormControl>
                     <Button
@@ -88,12 +72,6 @@ const Login = () => {
                 </form>
             </Box>
             </Stack>
-            <Box>
-            New to us?{" "}
-            <Link color="teal.500" href="#">
-                Sign Up
-            </Link>
-            </Box>
         </Flex>
       </>
     );
