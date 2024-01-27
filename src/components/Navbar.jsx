@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './Navbar.css';
-import pharmaseeLogo from './pharmaseeLogo.png';
+import NavBarLogo from './NavBarLogo.png';
 
 const Navbar = () => {
   return (
     <nav style={{ backgroundColor: '#44ACCF' }} className="navbar">
-      <ul style={{ paddingRight: '39px' }}>
-        <li style={{ backgroundColor: '#44ACCF', color: 'white', display: 'flex', alignItems: 'center', paddingRight: '39px'}}><img src={ pharmaseeLogo } alt="Home" width="56px" height="56px" className="iconStyle" /> pharmaSEE</li>
-        <p style={{ backgroundColor: '#44ACCF', color: 'white'}}></p>
+      <ul style={{ paddingLeft: '1vw', paddingBottom: '0.5vw', paddingTop: '0.5vw' }}>
+        <li style={{ backgroundColor: '#44ACCF', color: 'white', display: 'flex', alignItems: 'center' }}>
+          <img src={ NavBarLogo } alt="Home" width="200px" className="iconStyle" />
+        </li>
       </ul>
     </nav>
   );

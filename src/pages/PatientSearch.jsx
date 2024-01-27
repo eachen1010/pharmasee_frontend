@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Backend from '../utils/utils.js';
 // import Fuse from 'fuse.js';
@@ -28,6 +28,7 @@ import {
     Avatar,
     FormControl,
     FormHelperText,
+    UsePagination,
     InputRightElement
   } from "@chakra-ui/react";
   import { BsFunnel } from "react-icons/bs";
@@ -41,8 +42,9 @@ const PatientSearch = () => {
     const getPatients = async () => {
         try {
             const res = await Backend.get(`/patients`);
-            console.log(res);
-            setPatients(patients);
+            console.log(res)
+            setPatients(res.data);
+            console.log(patients.data);
             return res;
           } catch (err) {
             console.log(err);
@@ -50,15 +52,20 @@ const PatientSearch = () => {
     };
 
     const PatientTableEntry = ( {patient} ) => {
-        
         return (
-            <Tr>
-                <Td>{patient.first_name} {patient.last_name}</Td>
+            <Tr justifyContent="space-evenly">
+                <Td>{patient.firstName} {patient.lastName}</Td>
                 <Td>{patient.mrn}</Td>
-                <Td>{patient.hospitals}</Td>
+                <Td>
+                    <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
+                </Td>
             </Tr>
         );
     };
+
+    useEffect(() => {
+        getPatients();
+      }, []);
     
     return (
         <>
@@ -82,91 +89,53 @@ const PatientSearch = () => {
                         <InputLeftElement pointerEvents='none'>
                         <Search2Icon color='gray.300' />
                         </InputLeftElement>
-                        <Input width='59vw' placeholder='Enter Patient Name' />
+                        <Input width='18vw' placeholder='Enter Patient MRN' />
                     </InputGroup>
                     <InputGroup>
                         <InputLeftElement pointerEvents='none'>
                         <Search2Icon color='gray.300' />
                         </InputLeftElement>
-                        <Input width='18vw' placeholder='Enter Patient MRN' />
+                        <Input width='59vw' placeholder='Enter Patient Name' />
                     </InputGroup>
                     <InputGroup>
                         <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
                     </InputGroup>
                 </Stack>
                 <TableContainer width='81vw' marginTop='5vh'>
-                    <Table variant='simple'>
-                        <Thead style={{ backgroundColor: '#44ACCF' }}>
-                        <Tr>
-                            <Th style={{ color: 'white' }}>Patient Name</Th>
-                            <Th style={{ color: 'white' }}>MRN</Th>
-                            <Th style={{ color: 'white' }}>Hospital</Th>
-                        </Tr>
-                        </Thead>
-                        <Tbody>
+                    <Table variant='simple' >
+                    <Thead style={{ backgroundColor: '#44ACCF' }}>
+                    <Tr>
+                        <Th style={{ color: 'white' }}>Patient Name</Th>
+                        <Th style={{ color: 'white' }}>MRN</Th>
+                        <Th style={{ color: 'white' }}></Th>
+                    </Tr>
+                    </Thead>
+                    <Tbody >
+                        {/* {patients.map(patient => (<PatientTableEntry key={patient.mrn}/>))} */}
                         <Tr justifyContent="space-evenly">
                             <Td>Alyssia Tan</Td>
                             <Td>592841</Td>
-                            <Td>
-                                <HStack spacing={4} display='flex'>
-                                    <Tag
-                                    size='sm'
-                                    key='sm'
-                                    borderRadius='full'
-                                    variant='solid'
-                                    colorScheme='green'
-                                    >
-                                    <TagLabel>Green</TagLabel>
-                                    </Tag>
-                                </HStack>
+                            <Td> 
+                                <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
                             </Td>
                         </Tr>
                         <Tr>
                             <Td>Ethan Ho</Td>
                             <Td>592842</Td>
-                            <Td>
-                                <HStack spacing={4} display='flex'>
-                                    <Tag
-                                    size='sm'
-                                    key='sm'
-                                    borderRadius='full'
-                                    variant='solid'
-                                    colorScheme='cyan'
-                                    >
-                                    <TagLabel>Cyan</TagLabel>
-                                    </Tag>
-                                    <Tag
-                                    size='sm'
-                                    key='sm'
-                                    borderRadius='full'
-                                    variant='solid'
-                                    colorScheme='purple'
-                                    >
-                                    <TagLabel>Kaiser Permanente</TagLabel>
-                                    </Tag>
-                                </HStack>
+                            <Td  alignItems='right'> 
+                                <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
                             </Td>
                         </Tr>
                         <Tr>
                             <Td>Gayathri Yedavilli</Td>
                             <Td>592843</Td>
-                            <Td>
-                            <HStack spacing={4} display='flex'>
-                                    <Tag
-                                    size='sm'
-                                    key='sm'
-                                    borderRadius='full'
-                                    variant='solid'
-                                    colorScheme='purple'
-                                    >
-                                    <TagLabel>Not Green</TagLabel>
-                                    </Tag>
-                                </HStack>
+                            <Td> 
+                                <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
                             </Td>
                         </Tr>
-                        </Tbody>
+                    </Tbody>
                     </Table>
-                    </TableContainer>
+                </TableContainer>
             </Flex>
         </Flex>
       </>

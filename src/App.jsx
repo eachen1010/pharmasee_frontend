@@ -13,7 +13,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/search" element={<PatientSearch />} />
+          <Route path="/" element={<PatientSearch />} />
         </Routes>
       </Router>
     </ChakraProvider>
