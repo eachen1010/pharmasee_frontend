@@ -1,5 +1,6 @@
 import { useState } from 'react';
-// import Backend from '../../utils.js';
+import Navbar from '../components/Navbar';
+import Backend from '../utils/utils.js';
 // import Fuse from 'fuse.js';
 import {
     Flex,
@@ -35,21 +36,18 @@ import {
 
 const PatientSearch = () => {
 
-    // const getPatients = async () => {
-    //     try {
-    //         const response = await Backend.get(`/route/route`);
-    //         setEventsData(prevEventsData =>
-    //           prevEventsData.map(event =>
-    //             event.event_data_id === event_data_id
-    //               ? { ...event, is_checked_in: !event.is_checked_in }
-    //               : event,
-    //           ),
-    //         );
-    //         return response;
-    //       } catch (err) {
-    //         console.log(err);
-    //       }
-    // };
+    const [patients, setPatients] = useState([]);
+
+    const getPatients = async () => {
+        try {
+            const res = await Backend.get(`/patients`);
+            console.log(res);
+            setPatients(patients);
+            return res;
+          } catch (err) {
+            console.log(err);
+          }
+    };
 
     const PatientTableEntry = ( {patient} ) => {
         
@@ -64,6 +62,7 @@ const PatientSearch = () => {
     
     return (
         <>
+            <Navbar />
             <Flex
             flexDirection="column"
             width="100vw"
@@ -92,12 +91,12 @@ const PatientSearch = () => {
                         <Input width='18vw' placeholder='Enter Patient MRN' />
                     </InputGroup>
                     <InputGroup>
-                        <Button backgroundColor="#7C4E46"><BsFunnel style={{ color: 'white' }} /></Button>
+                        <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
                     </InputGroup>
                 </Stack>
                 <TableContainer width='81vw' marginTop='5vh'>
                     <Table variant='simple'>
-                        <Thead style={{ backgroundColor: '#7C4E46' }}>
+                        <Thead style={{ backgroundColor: '#44ACCF' }}>
                         <Tr>
                             <Th style={{ color: 'white' }}>Patient Name</Th>
                             <Th style={{ color: 'white' }}>MRN</Th>
