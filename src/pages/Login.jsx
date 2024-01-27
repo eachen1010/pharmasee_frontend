@@ -1,99 +1,111 @@
-// import { useState } from 'react';
+//import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import pharmaseeLogo from '../components/pharmaseeLogo.png';
+import pharmaseeName from '../components/pharmasee.png';
+
 import {
     Flex,
-    Heading,
     Input,
     Button,
-    InputGroup,
     Stack,
-    InputLeftElement,
-    chakra,
     Box,
-    Link,
-    Avatar,
     FormControl,
     FormHelperText,
-    InputRightElement
+    Image
   } from "@chakra-ui/react";
-  import { FaUserAlt, FaLock } from "react-icons/fa";
   
-  const CFaUserAlt = chakra(FaUserAlt);
-  const CFaLock = chakra(FaLock);  
 
 const Login = () => {
-    
+
+    const navigate = useNavigate();
+    //const [error, setError] = useState('');
+
+    // useEffect(() => {
+    //     if(currentUser)
+    //     {
+    //         navigate('/search');
+    //     };
+    //   });
+
+    const handleClick = async data => {
+        //const { username, password } = data;
+        try {
+          navigate('/search');
+          //reset();
+        } catch (e) {
+          console.log(e);//setError('Failed to log in');
+        }
+      };
+
+
     return (
         <>
             <Flex
-            flexDirection="column"
+            flexDirection="row"
             width="100wh"
             height="100vh"
-            backgroundColor="gray.200"
-            justifyContent="center"
-            alignItems="center"
-            >
+            backgroundColor="white"
+            //justifyContent="center"
+            //alignItems="center"
+            > 
+
+            <Box bg="#44accf" minW={{base:"40%"}}>
+            </Box>
+
             <Stack
-            flexDir="column"
-            mb="2"
             justifyContent="center"
             alignItems="center"
+            minW = {{base:"60%"}}
+            flexDir="column"
+            //m="2"
             >
-            <Avatar bg="teal.500" />
-            <Heading color="teal.400">Welcome</Heading>
-            <Box minW={{ base: "90%", md: "468px" }}>
-                <form>
+            <Box>
+            <Image src={pharmaseeLogo} alt='cute pill' width="125px" height="125px"/>
+            </Box>
+
+            <Box>
+            <Image src={pharmaseeName} alt='website name' width = "30vw"/>
+            </Box>
+
+            <Box minW={{ base: "50%"}}>
+                <form >
                 <Stack
+                   // maxW = {{base:"60%"}}
+                    //maxW = "10vw"
                     spacing={4}
-                    p="1rem"
                     backgroundColor="whiteAlpha.900"
-                    boxShadow="md"
+                    boxShadow="base"
+                    rounded = "md"
+                    padding = "20px"
+                    alignItems = "center"
+                    justifyContent = "center"
                 >
-                    <FormControl>
-                    <InputGroup>
-                        <InputLeftElement
-                        pointerEvents="none"
-                        children={<CFaUserAlt color="gray.300" />}
-                        />
-                        <Input type="email" placeholder="email address" />
-                    </InputGroup>
+                    <FormControl justifyContent = "center">
+                        <Input type="username" placeholder="Hospital username" />
                     </FormControl>
                     <FormControl>
-                    <InputGroup>
-                        <InputLeftElement
-                        pointerEvents="none"
-                        color="gray.300"
-                        children={<CFaLock color="gray.300" />}
-                        />
-                        <Input
-                        type={"password"}
-                        placeholder="Password"
-                        />
-                        <InputRightElement width="4.5rem">
-                        </InputRightElement>
-                    </InputGroup>
+                        <Input type={"password"} placeholder="Password"/>
                     <FormHelperText textAlign="right">
-                        <Link>forgot password?</Link>
+                        <p>forgot password?</p>
                     </FormHelperText>
                     </FormControl>
+
                     <Button
                     borderRadius={0}
                     type="submit"
                     variant="solid"
-                    colorScheme="teal"
+                    colorScheme='blue'
+                    backgroundColor = "#44accf"
                     width="full"
+                    onClick={handleClick}
                     >
-                    Login
+                        Login
                     </Button>
+
                 </Stack>
                 </form>
             </Box>
             </Stack>
-            <Box>
-            New to us?{" "}
-            <Link color="teal.500" href="#">
-                Sign Up
-            </Link>
-            </Box>
         </Flex>
       </>
     );
