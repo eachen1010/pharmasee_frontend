@@ -36,48 +36,6 @@ import {
 
 const DrugSearch = () => {
 
-    const DrugList = [
-        'Ibritumomab tiuxetan',
-        'Warfarin',
-        'Daptomycin',
-        'Lovastatin',
-        'Tositumomab',
-        'Succinylcholine',
-        'Morphine',
-        'Ethylmorphine',
-        'Dihydromorphine',
-        'Azithromycin',
-        'Ranolazine',
-        'Oxycodone',
-        'Phenindione',
-        'Niacin',
-        'Gemfibrozil',
-        'Bezafibrate',
-        'Nicotinamide',
-        'Raltegravir',
-        'Ethyl biscoumacetate',
-        'Acipimox',
-        'Ciprofibrate',
-        'Fluindione',
-        'Amiodarone',
-        'Venlafaxine',
-        'Desvenlafaxine',
-        'Tranilast',
-        'Regorafenib',
-        'Levomilnacipran',
-        'Obinutuzumab',
-        'Vorapaxar',
-        'Ibrutinib',
-        'Nintedanib',
-        'Limaprost',
-        'Ginkgo biloba',
-        'Deoxycholic Acid',
-        'Omacetaxine mepesuccinate',
-        'Milnacipran',
-        'Collagenase',
-        'Ibuprofen'
-      ];
-
     const [drugList, setDrugList] = useState([]);
 
     const getDrugList = async () => {
