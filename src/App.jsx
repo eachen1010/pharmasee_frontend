@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import * as React from 'react'
 import Login from './pages/Login';
+import Patient from './pages/Patient';
 import PatientSearch from './pages/PatientSearch';
 import DrugSearch from './pages/DrugSearch';
 import SignUp from './pages/SignUp';
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/dashboard" element={<PatientSearch />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/search" element={<DrugSearch />} />
+          <Route path='/patient' element={<Patient />} />
         </Routes>
       </Router>
     </ChakraProvider>
