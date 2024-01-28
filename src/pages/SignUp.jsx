@@ -49,7 +49,7 @@ const SignUp = () => {
             > 
 
             <Box bg="#44accf" minW={{base:"40%"}}>
-              <Heading mt = "50%" ml = "7%" color="white">Come up with a unique family username!</Heading>
+              <Heading paddingLeft={4} paddingRight={4} textAlign = "center" mt = "50%" color="white">Come up with a unique family username!</Heading>
             </Box>
 
             <Stack

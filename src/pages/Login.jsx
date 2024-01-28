@@ -61,7 +61,7 @@ const Login = () => {
             > 
 
             <Box bg="#44accf" minW={{base:"40%"}}>
-              <Heading mt = "50%" ml = "7%" color="white">Stay informed on your loved ones' medications!</Heading>
+              <Heading paddingLeft={4} paddingRight={4} textAlign = "center" mt = "50%" color="white">Stay informed on your loved ones' medications!</Heading>
             </Box>
 
             <Stack
