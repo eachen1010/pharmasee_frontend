@@ -33,6 +33,7 @@ import {
 import { BsFunnel, BsPlusCircle } from "react-icons/bs";
 import { Search2Icon } from '@chakra-ui/icons';
 import { useNavigate, useNavigation } from 'react-router-dom';
+import AddMemberModal from './AddMemberModal.jsx';
 
 const PatientSearch = () => {
 
@@ -103,6 +104,7 @@ const PatientSearch = () => {
             backgroundColor="F3F3F3"
             justifyContent="center"
             alignItems="center"
+            marginTop='-5vh'
             >
             <Flex 
             flexDirection="column"
@@ -121,12 +123,12 @@ const PatientSearch = () => {
                         <Button backgroundColor="#44ACCF"><Search2Icon style={{ color: 'white' }} /></Button>
                     </InputGroup>
                 </Stack>
-                <TableContainer width='81vw' marginTop='5vh'>
+                <TableContainer width='81vw' marginTop='5vh' overflowY='scroll'>
                     <Table variant='simple' >
-                    <Thead style={{ backgroundColor: '#44ACCF' }}>
+                    <Thead style={{ backgroundColor: '#44ACCF' , top: '0px', position: 'sticky', zIndex: 999}}>
                     <Tr>
-                        <Th style={{ color: 'white' }}>Member Name</Th>
-                        <Th style={{ color: 'white' }}>DOB</Th>
+                        <Th style={{ color: 'white'}}>Member Name</Th>
+                        <Th style={{ color: 'white'}}>DOB</Th>
                         <Th></Th>
                     </Tr>
                     </Thead>
@@ -134,19 +136,18 @@ const PatientSearch = () => {
                         {patients && patients.map(patient => (<PatientTableEntry patient={patient} />))}
                     </Tbody>
                     </Table>
-                    <Box as='button' width='81vw' height='10vh' borderWidth='1px' borderRadius='sm' overflow='hidden' borderLeft={0} borderRight={0} borderTop={0}
-                    _hover={{ bg: '#44accf' }}
-                    _active={{
-                        bg: '#44accf',
-                        transform: 'scale(0.98)',
-                        borderColor: '#bec3c9',
-                    }}
-                    >
-                    <div align-items='center' display='flex' flex-direction='row'>
-                        <strong font-weight='100'>Add Member</strong>
-                    </div>
-                    </Box>
+                    
                 </TableContainer>
+                <div 
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginTop:'5vh'
+                      }}>
+                        <AddMemberModal />
+                    </div>
             </Flex>
         </Flex>
       </>

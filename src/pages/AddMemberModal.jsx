@@ -86,7 +86,14 @@ const AddMemberModal = ({}) => {
 
   return (
     <>
-      <Button onClick={onOpen} colorScheme='blue'>Add Member</Button>
+      <Button onClick={onOpen} bg='#F3f3f3'
+      _hover={{ bg: '#44accf' }}
+      _active={{
+          bg: '#44accf',
+          transform: 'scale(0.98)',
+          borderColor: '#bec3c9',
+      }}>
+        Add Member</Button>
       
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
