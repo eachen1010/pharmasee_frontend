@@ -30,9 +30,10 @@ import {
     FormHelperText,
     InputRightElement
   } from "@chakra-ui/react";
-  import { BsFunnel } from "react-icons/bs";
-  import pharmaseeLogo from '../components/pharmaseeLogo.png';
-  import { Search2Icon } from '@chakra-ui/icons'
+import { BsFunnel } from "react-icons/bs";
+import pharmaseeLogo from '../components/pharmaseeLogo.png';
+import { Search2Icon } from '@chakra-ui/icons';
+import { useNavigate, useNavigation } from 'react-router-dom';
 
 const PatientSearch = () => {
 
@@ -40,7 +41,7 @@ const PatientSearch = () => {
 
     const getPatients = async () => {
         try {
-            const res = await Backend.get(`/patients`);
+            const res = await Backend.get(`/family/banhmi`);
             setPatients(res.data);
             console.log('Patients after update:', patients);
             return res.data;
@@ -50,11 +51,15 @@ const PatientSearch = () => {
     };
 
     const PatientTableEntry = ( {patient} ) => {
+        const navigate = useNavigate();
         return (
             <Tr justifyContent="space-evenly">
                 <Td>{patient.firstName} {patient.lastName}</Td>
+                <Td>{patient.dob}</Td>
                 <Td>
-                    <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
+                    <Button backgroundColor="#44ACCF" onClick={() => {
+                        navigate('/patient', {state: {"patientMrn": patient.mrn}});   
+                    }}><BsFunnel style={{ color: 'white' }} /></Button>
                 </Td>
             </Tr>
         );
@@ -97,7 +102,8 @@ const PatientSearch = () => {
                     <Thead style={{ backgroundColor: '#44ACCF' }}>
                     <Tr>
                         <Th style={{ color: 'white' }}>Member Name</Th>
-                        <Th style={{ color: 'white' }}></Th>
+                        <Th style={{ color: 'white' }}>DOB</Th>
+                        <Th></Th>
                     </Tr>
                     </Thead>
                     <Tbody >
