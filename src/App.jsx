@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp';
 import { ChakraProvider } from '@chakra-ui/react'
 import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import SafeModal from './pages/SafeUseModal';
 
 const App = () => {
 
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/search" element={<DrugSearch />} />
           <Route path='/patient' element={<Patient />} />
+          <Route path="/safe-modal" element={<SafeModal />} />
         </Routes>
       </Router>
     </ChakraProvider>
