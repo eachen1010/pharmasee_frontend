@@ -20,35 +20,40 @@ import {
 const Login = () => {
 
     const navigate = useNavigate();
-    //const [error, setError] = useState('');
 
-    // useEffect(() => {
-    //     if(currentUser)
-    //     {
-    //         navigate('/search');
-    //     };
-    //   });
-
-    const handleClickLogin = async data => {
-        //const { username, password } = data;
-        try {
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        // console.log(event.target.elements.username.value);
+        // console.log(event.target.elements.password.value);
+        const user = event.target.elements.username.value;
+        if (user === "TheMillers")
+        {
           navigate('/dashboard');
-          //reset();
-        } catch (e) {
-          console.log(e);//setError('Failed to log in');
         }
-      };
+        else{
+          alert("Family username does not exist")
+        }
+        // const res = await fetch('./logins.json'); // Assuming logins.json is in the public folder
+        // console.log(res);
 
-      const handleSubmit = (event) => {
-        event.preventDefault();
-        //const { username, password } = data;
-        try {
-          console.log("Submitted form eeeee");
-          console.log(event.target.elements);
-        } catch (e) {
-          console.log(e);//setError('Failed to log in');
-        }
-      };
+
+        // if (!res.ok) {
+        //   throw new Error(`Failed to fetch logins data (${res.status} ${res.statusText})`);
+        // }
+
+        // const loginsData = await res.json();
+        // console.log(loginsData);
+        // const userExists = loginsData.users.includes(user);
+        // if(userExists){
+        //   navigate('/dashboard');
+        // }
+        // else{
+        //   alert("Family username does not exist")
+      } catch (e) {
+        console.log(e);
+      }
+    };
 
     const handleClickSignUp = async data => {
       //const { username, password } = data;
@@ -100,10 +105,10 @@ const Login = () => {
                     justifyContent = "center"
                   >
                     <FormControl id="username" isRequired>
-                        <Input type="text" placeholder="Family Username" />
+                        <Input type="username" placeholder="Family Username" />
                     </FormControl>
                     <FormControl id="password" isRequired>
-                      <Input type="text" placeholder="Password"/>
+                      <Input type="password" placeholder="Password"/>
                       <FormHelperText textAlign="right" color = "gray" textDecoration = "underline">
                           <p> Forgot password?</p>
                       </FormHelperText>
@@ -116,7 +121,6 @@ const Login = () => {
                     colorScheme='blue'
                     backgroundColor = "#44accf"
                     width="full"
-                    onClick={handleClickLogin}
                     >
                       Login
                     </Button>

@@ -27,11 +27,14 @@ const SignUp = () => {
     //     };
     //   });
 
-    const handleClick = async data => {
-        //const { username, password } = data;
+    const handleSubmit = (event) => {
+        event.preventDefault();
         try {
-          navigate('/dashboard');
+          //navigate('/dashboard');
           //reset();
+          const user = event.target.elements.newusername.value;
+          const pass = event.target.elements.newpassword.value;
+          
         } catch (e) {
           console.log(e);//setError('Failed to log in');
         }
@@ -67,7 +70,7 @@ const SignUp = () => {
             </Box>
 
             <Box minW={{ base: "50%"}}>
-                <form >
+                <form onSubmit={handleSubmit}>
                 <Stack
                    // maxW = {{base:"60%"}}
                     //maxW = "10vw"
@@ -79,11 +82,13 @@ const SignUp = () => {
                     alignItems = "center"
                     justifyContent = "center"
                 >
-                    <FormControl justifyContent = "center">
+
+
+                    <FormControl id="newusername" justifyContent = "center" isRequired>
                         <Input type="username" placeholder="New Family Username" />
                     </FormControl>
-                    <FormControl>
-                        <Input type={"password"} placeholder="New Password"/>
+                    <FormControl id="newpassword" isRequired>
+                        <Input type="password" placeholder="New Password"/>
                     </FormControl>
 
                     <Button
@@ -93,7 +98,6 @@ const SignUp = () => {
                     colorScheme='blue'
                     backgroundColor = "#44accf"
                     width="full"
-                    onClick={handleClick}
                     >
                         Create Family
                     </Button>
