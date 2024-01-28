@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Backend from '../utils/utils.js';
+
 // import Fuse from 'fuse.js';
 import {
     Flex,
@@ -35,6 +36,7 @@ import pharmaseeLogo from '../components/pharmaseeLogo.png';
 import { Search2Icon } from '@chakra-ui/icons';
 import { useNavigate, useNavigation } from 'react-router-dom';
 
+
 const PatientSearch = () => {
 
     const [patients, setPatients] = useState([]);
@@ -53,7 +55,7 @@ const PatientSearch = () => {
     const PatientTableEntry = ( {patient} ) => {
         const navigate = useNavigate();
         return (
-            <Tr >{/*justifyContent="space-evenly">*/}
+            <Tr >
                 <Td>{patient.firstName} {patient.lastName}</Td>
                 <Td>{patient.dob}</Td>
                 <Td textAlign="right">
@@ -135,6 +137,7 @@ const PatientSearch = () => {
                     </Tbody>
                     </Table>
                 </TableContainer>
+
             </Flex>
         </Flex>
       </>
