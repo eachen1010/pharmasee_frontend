@@ -80,28 +80,36 @@ const DrugSearch = () => {
 
     const [drugList, setDrugList] = useState([]);
 
-    // const getDrugs = async () => {
-    //     try {
-    //         const res = await Backend.get(`/ddi`);
-    //         setDrugs(res.data);
-    //         console.log('Drugs after update:', drugs);
-    //         return res.data;
-    //       } catch (err) {
-    //         console.log(err);
-    //       }
-    // };
+    const getDrugList = async () => {
+        try {
+            const res = await Backend.get(`/drugs`);
+            console.log(res.data);
+            setDrugList(res.data);
+            return res.data;
+          } catch (err) {
+            console.log(err);
+          }
+    };
+
+    useEffect(() => {
+        getDrugList();
+    }, []);
 
     const DrugTableEntry = ( {drug} ) => {
         console.log()
         return (
             <Box maxW='81vw' borderWidth='1px' borderRadius='lg' overflow='hidden' borderLeft={0} borderRight={0} borderTop={0}>
                 <Tr justifyContent="space-evenly">
-                    <Td> <Radio value={drug} ></Radio> </Td>
-                    <Td>{drug}</Td>
+                    <Td> <Radio value={drug.drugName} ></Radio> </Td>
+                    <Td>{drug.drugName}</Td>
                 </Tr>
             </Box>
         );
     };
+
+    const filterDrugs = () => {
+        console.log('hi')
+    }
 
     const [value, setValue] = useState('1');
     
@@ -119,7 +127,7 @@ const DrugSearch = () => {
             <Flex 
             flexDirection="column"
             width="90vw"
-            height="80vh"
+            height="95vh"
             alignItems="center"
             >
                 <Text fontSize='5xl'>John Doe</Text>
@@ -144,7 +152,7 @@ const DrugSearch = () => {
                         <InputLeftElement pointerEvents='none'>
                         <Search2Icon color='gray.300' />
                         </InputLeftElement>
-                        <Input width='81vw' placeholder='Enter Drug Name' />
+                        <Input width='81vw' placeholder='Enter Drug Name' onChange={filterDrugs} />
                     </InputGroup>
                 </Stack>
                 <div marginTop="1vw">
@@ -158,8 +166,8 @@ const DrugSearch = () => {
                             <Tbody>
                                 <Box>
                                     <RadioGroup onChange={setValue} value={value} >
-                                        <Stack direction='column' >
-                                            {DrugList.map(drug => (<DrugTableEntry drug={drug} />))}
+                                        <Stack direction='column'>
+                                            {drugList.map(drug => (<DrugTableEntry drug={drug} />))}
                                         </Stack>
                                     </RadioGroup>
                                 </Box>
