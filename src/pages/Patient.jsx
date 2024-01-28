@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Backend from '../utils/utils.js';
 import SafeModal from '../pages/SafeUseModal';
+import bottle from '../components/bottleTransparent.png'
+import { Search2Icon } from '@chakra-ui/icons'
+import { useLocation } from 'react-router-dom';
 
 import {
     Flex,
@@ -23,10 +26,14 @@ import {
     RadioGroup,
     InputGroup,
     InputLeftElement,
-    Input
+    Input,
+    useDisclosure,
+    Modal,
+    ModalCloseButton,
+    Image,
+    ModalOverlay,
+    ModalContent,
   } from "@chakra-ui/react";
-import { Search2Icon } from '@chakra-ui/icons'
-import { useLocation } from 'react-router-dom';
 
 const isStateValid = (state) => {
     if (!state) return false;
@@ -35,6 +42,30 @@ const isStateValid = (state) => {
     return true;
 };
 
+const HelpModal = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+  
+    return (
+      <>
+        <Button onClick = {onOpen} fontSize='5vh' fontColor='white' background='#a6a6a6' colorScheme='blue'>?</Button>
+
+        <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent centerContent={true}
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginTop: '23vh'
+            }}>
+              <Text marginLeft='2vw' fontSize='2xl' fontWeight='bold' textAlign='center'>Check active ingredients here!</Text>
+              <Image src={bottle} paddingTop='25px' marginRight='2vw' paddingBottom={0} alt='red X' width="180px"/>
+              <ModalCloseButton />
+            </ModalContent>
+        </Modal>
+      </>
+    );
+  };
 
 
 
@@ -107,16 +138,15 @@ const Patient = () => {
     };
     
     
-    
-    const PatientDrugEntry = ( {drug} ) => {
-        return (
-            <Tr justifyContent="space-evenly">
-                <Td>{drug.name}</Td>
-                <Td>{drug.dosage}</Td>
-                <Td></Td>
-            </Tr>
-        );
-    };
+    // const PatientDrugEntry = ( {drug} ) => {
+    //     return (
+    //         <Tr justifyContent="space-evenly">
+    //             <Td>{drug.name}</Td>
+    //             <Td>{drug.dosage}</Td>
+    //             <Td></Td>
+    //         </Tr>
+    //     );
+    // };
     
     useEffect(() => {
         getPatient();
@@ -229,8 +259,16 @@ const Patient = () => {
                         justifyContent: 'center',
                       }}>
                         <Button onClick = {() => compareDrugs(value)} backgroundColor='#44accf' colorScheme='blue'>Compare</Button>
-                        {/* {<CompareDrugs drug1={value}/>} */}
                         {popUp ? (<SafeModal safe={safe} drug1={value} drug2={drug2} setPopUp={setPopUp}/>) : null}
+                    </div>
+                    <div style={{
+                        marginTop: '5vh',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'right',
+                        justifyContent: 'right',
+                      }}>
+                        {<HelpModal/>}
                     </div>
                 </div>
             </Flex>
