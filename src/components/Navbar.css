@@ -8,6 +8,7 @@
 
 .navbar {
 /* height: 72px; */
+overflow: hidden;
 color: #7C4E46;
 background-color: var(--cds-blue-1);
 display: flex;
