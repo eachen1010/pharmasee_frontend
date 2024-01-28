@@ -11,14 +11,15 @@ const Navbar = () => {
   const handleClick = async data => {
     try {
       navigate('/dashboard');
+      
     } catch (e) {
       console.log(e);//setError('Failed to log in');
     }
   };
 
   return (
-    <nav style={{ backgroundColor: '#44ACCF', display: 'flex', justifyContent:'space-between', }} className="navbar">
-      <ul style={{ paddingLeft: '1vw', paddingBottom: '0.5vw', paddingTop: '0.5vw'}}>
+    <nav style={{ width: '100%',backgroundColor: '#44ACCF', display: 'flex', justifyContent:'space-between', }} className="navbar">
+      <ul style={{ paddingLeft: '1vw', paddingBottom: '0.5vw', paddingTop: '1vw'}}>
         <li style={{ backgroundColor: '#44ACCF', color: 'white', display: 'inline', alignItems: 'center' }}>
           <img onClick={handleClick} src={ NavBarLogo } alt="Home" width="200px" className="iconStyle" />
         </li>
@@ -27,7 +28,7 @@ const Navbar = () => {
         <label style={{fontSize: '20px', width: '100%', padding: '1vw',}}> 
           TheMillers
         </label>
-        <img src={avatar} alt='avatar' width = 'auto' height='10px'/> 
+        <img src={avatar} alt='avatar' style={{marginTop: '.8vh', marginRight: '2vh', height:'45px'}}/> 
       </div>
     </nav>
   );
