@@ -28,7 +28,6 @@ import {
     Avatar,
     FormControl,
     FormHelperText,
-    UsePagination,
     InputRightElement
   } from "@chakra-ui/react";
   import { BsFunnel } from "react-icons/bs";
@@ -42,12 +41,8 @@ const PatientSearch = () => {
     const getPatients = async () => {
         try {
             const res = await Backend.get(`/patients`);
-            console.log('Response:', res.data);
-
             setPatients(res.data);
-
             console.log('Patients after update:', patients);
-
             return res.data;
           } catch (err) {
             console.log(err);
@@ -66,9 +61,7 @@ const PatientSearch = () => {
     };
 
     useEffect(() => {
-        getPatients().then(updatedPatients => {
-            console.log('Patients after update:', updatedPatients);
-        });
+        getPatients();
     }, []);
     
     return (
@@ -93,15 +86,9 @@ const PatientSearch = () => {
                         <InputLeftElement pointerEvents='none'>
                         <Search2Icon color='gray.300' />
                         </InputLeftElement>
-                        <Input width='59vw' placeholder='Enter Patient Name' />
+                        <Input width='75vw' placeholder='Enter Member Name' />
                     </InputGroup>
-                    <InputGroup>
-                        <InputLeftElement pointerEvents='none'>
-                        <Search2Icon color='gray.300' />
-                        </InputLeftElement>
-                        <Input width='15vw' placeholder='Enter Patient MRN' />
-                    </InputGroup>
-                    <InputGroup>
+                    <InputGroup alignItems="right">
                         <Button backgroundColor="#44ACCF"><Search2Icon style={{ color: 'white' }} /></Button>
                     </InputGroup>
                 </Stack>
@@ -109,7 +96,7 @@ const PatientSearch = () => {
                     <Table variant='simple' >
                     <Thead style={{ backgroundColor: '#44ACCF' }}>
                     <Tr>
-                        <Th style={{ color: 'white' }}>Patient Name</Th>
+                        <Th style={{ color: 'white' }}>Member Name</Th>
                         <Th style={{ color: 'white' }}></Th>
                     </Tr>
                     </Thead>
