@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar'
-// import Backend from '../../utils.js';
+import Backend from '../utils/utils.js';
 // import Fuse from 'fuse.js';
 import {
     Flex,
@@ -12,13 +12,11 @@ import {
     InputLeftElement,
     TableContainer,
     Table,
-    TableCaption,
     Th,
     Thead,
     Tr,
     Tbody,
     Td,
-    Tfoot,
     Tag,
     TagLabel,
     HStack,
@@ -33,35 +31,75 @@ import {
     FormHelperText,
     InputRightElement
   } from "@chakra-ui/react";
-  import { BsFunnel } from "react-icons/bs";
-  import pharmaseeLogo from '../components/pharmaseeLogo.png';
   import { Search2Icon } from '@chakra-ui/icons'
+
 
 const DrugSearch = () => {
 
-    // const getPatients = async () => {
+    const DrugList = [
+        'Ibritumomab tiuxetan',
+        'Warfarin',
+        'Daptomycin',
+        'Lovastatin',
+        'Tositumomab',
+        'Succinylcholine',
+        'Morphine',
+        'Ethylmorphine',
+        'Dihydromorphine',
+        'Azithromycin',
+        'Ranolazine',
+        'Oxycodone',
+        'Phenindione',
+        'Niacin',
+        'Gemfibrozil',
+        'Bezafibrate',
+        'Nicotinamide',
+        'Raltegravir',
+        'Ethyl biscoumacetate',
+        'Acipimox',
+        'Ciprofibrate',
+        'Fluindione',
+        'Amiodarone',
+        'Venlafaxine',
+        'Desvenlafaxine',
+        'Tranilast',
+        'Regorafenib',
+        'Levomilnacipran',
+        'Obinutuzumab',
+        'Vorapaxar',
+        'Ibrutinib',
+        'Nintedanib',
+        'Limaprost',
+        'Ginkgo biloba',
+        'Deoxycholic Acid',
+        'Omacetaxine mepesuccinate',
+        'Milnacipran',
+        'Collagenase',
+        'Ibuprofen'
+      ];
+
+    const [drugList, setDrugList] = useState([]);
+
+    // const getDrugs = async () => {
     //     try {
-    //         const response = await Backend.get(`/route/route`);
-    //         setEventsData(prevEventsData =>
-    //           prevEventsData.map(event =>
-    //             event.event_data_id === event_data_id
-    //               ? { ...event, is_checked_in: !event.is_checked_in }
-    //               : event,
-    //           ),
-    //         );
-    //         return response;
+    //         const res = await Backend.get(`/ddi`);
+    //         setDrugs(res.data);
+    //         console.log('Drugs after update:', drugs);
+    //         return res.data;
     //       } catch (err) {
     //         console.log(err);
     //       }
     // };
 
-    const PatientTableEntry = ( {patient} ) => {
+    const DrugTableEntry = ( {drug} ) => {
+
         return (
-            <Tr>
-                <Td>{patient.first_name} {patient.last_name}</Td>
-                <Td>{patient.mrn}</Td>
-                <Td>{patient.hospitals}</Td>
-            </Tr>
+            <Box maxW='81vw' borderWidth='1px' borderRadius='lg' overflow='hidden' borderLeft={0} borderRight={0} borderTop={0}>
+                <Tr justifyContent="space-evenly">
+                    <Td> <Radio value={drug} ></Radio> </Td>
+                    <Td>{drug}</Td>
+                </Tr>
+            </Box>
         );
     };
 
@@ -85,7 +123,7 @@ const DrugSearch = () => {
             alignItems="center"
             >
                 <Text fontSize='5xl'>John Doe</Text>
-                <Stack spacing={4} direction='row' justifyContent="space-evenly">
+                <Stack spacing={4} direction='row' justifyContent="space-evenly" marginBottom='5vh'>
                     <HStack spacing={4}>
                         {['md'].map((size) => (
                             <Tag size={size} key={size} variant='subtle' colorScheme='green'>
@@ -101,7 +139,6 @@ const DrugSearch = () => {
                         ))}
                     </HStack>
                 </Stack>
-                
                 <Stack spacing={2} direction="row" width='auto' justifyContent="space-evenly">
                     <InputGroup>
                         <InputLeftElement pointerEvents='none'>
@@ -110,44 +147,23 @@ const DrugSearch = () => {
                         <Input width='81vw' placeholder='Enter Drug Name' />
                     </InputGroup>
                 </Stack>
-                <div>
-                <TableContainer width='81vw' marginTop='5vh'>
+                <div marginTop="1vw">
+                <TableContainer width='81vw' height='50vh' marginTop='5vh'>
                     <Table variant='unstyled'>
-                        <Thead style={{ backgroundColor: '#44ACCF' }}>
+                        <Thead style={{ backgroundColor: '#44ACCF', top: '0px', position: 'sticky' }}>
                         <Tr>
                             <Th style={{ color: 'white' }}>Drug Name</Th>
                         </Tr>
                         </Thead>
-                        <Tbody>
-                        <RadioGroup onChange={setValue} value={value}>
-                            <Stack direction='column'>
-                                <Box maxW='81vw' borderWidth='1px' borderRadius='lg' overflow='hidden' borderLeft={0} borderRight={0} borderTop={0}>
-                                    <Tr justifyContent="space-evenly">
-                                        <Td> <Radio value='1'></Radio> </Td>
-                                        <Td>Hydrocodone</Td>
-                                    </Tr>
-                                </Box>
-                                <Box maxW='81vw' borderWidth='1px' borderRadius='lg' overflow='hidden' borderLeft={0} borderRight={0} borderTop={0}>
-                                    <Tr>
-                                        <Td> <Radio value='2'></Radio> </Td>
-                                        <Td>Losartan</Td>
-                                    </Tr>
-                                </Box>
-                                <Box maxW='81vw' borderWidth='1px' borderRadius='lg' overflow='hidden' borderLeft={0} borderRight={0} borderTop={0}>
-                                    <Tr>
-                                        <Td> <Radio value='3'></Radio> </Td>
-                                        <Td>Adderall</Td>
-                                    </Tr>
-                                </Box>
-                                <Box maxW='81vw' borderWidth='1px' borderRadius='lg' overflow='hidden' borderLeft={0} borderRight={0} borderTop={0}>
-                                    <Tr>
-                                        <Td> <Radio value='4'></Radio> </Td>
-                                        <Td>Fentanyl</Td>
-                                    </Tr>
-                                </Box>
-                        </Stack>
-                        </RadioGroup>
-                        </Tbody>
+                        <Box overflowY='scroll'>   
+                            <Tbody>
+                                <RadioGroup onChange={setValue} value={value} >
+                                    <Stack direction='column' >
+                                        {DrugList.map(drug => (<DrugTableEntry drug={drug} />))}
+                                    </Stack>
+                                </RadioGroup>
+                            </Tbody>
+                        </Box>
                     </Table>
                     </TableContainer>
                     </div>
