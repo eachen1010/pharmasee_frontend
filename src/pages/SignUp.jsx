@@ -81,10 +81,10 @@ const SignUp = () => {
                     justifyContent = "center"
                 >
                     <FormControl justifyContent = "center">
-                        <Input type="username" placeholder="Family Username" />
+                        <Input type="username" placeholder="New Family Username" />
                     </FormControl>
                     <FormControl>
-                        <Input type={"password"} placeholder="Password"/>
+                        <Input type={"password"} placeholder="New Password"/>
                     </FormControl>
 
                     <Button
