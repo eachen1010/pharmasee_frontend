@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar';
 import Backend from '../utils/utils.js';
+import SafeModal from '../pages/SafeUseModal';
+
 // import Fuse from 'fuse.js';
 import {
     Flex,
@@ -127,14 +129,26 @@ const DrugSearch = () => {
                                         <Stack direction='column'>
                                             {drugList.map(drug => (<DrugTableEntry drug={drug} />))}
                                         </Stack>
+                                        
                                     </RadioGroup>
                                 </Box>
                             </Tbody>
                         </Table>
                     </TableContainer>
+                    <div 
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                        {/* return result decides SafeModal vs NotSafeModal */}
+                        <SafeModal/>
+                    </div>
                 </div>
             </Flex>
         </Flex>
+
       </>
     );
 };
