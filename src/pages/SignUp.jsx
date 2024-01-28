@@ -31,7 +31,7 @@ const SignUp = () => {
     const handleClick = async data => {
         //const { username, password } = data;
         try {
-          navigate('/search');
+          navigate('/dashboard');
           //reset();
         } catch (e) {
           console.log(e);//setError('Failed to log in');

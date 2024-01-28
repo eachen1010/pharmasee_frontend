@@ -33,7 +33,7 @@ const Login = () => {
     const handleClickLogin = async data => {
         //const { username, password } = data;
         try {
-          navigate('/search');
+          navigate('/dashboard');
           //reset();
         } catch (e) {
           console.log(e);//setError('Failed to log in');
@@ -58,8 +58,6 @@ const Login = () => {
             width="100wh"
             height="100vh"
             backgroundColor="white"
-            //justifyContent="center"
-            //alignItems="center"
             > 
 
             <Box bg="#44accf" minW={{base:"40%"}}>
@@ -71,7 +69,6 @@ const Login = () => {
             alignItems="center"
             minW = {{base:"60%"}}
             flexDir="column"
-            //m="2"
             >
             <Box>
             <Image src={pharmaseeLogo} alt='cute pill' width="125px" height="125px"/>
@@ -83,9 +80,7 @@ const Login = () => {
 
             <Box minW={{ base: "50%"}}>
                 <form >
-                <Stack
-                   // maxW = {{base:"60%"}}
-                    //maxW = "10vw"
+                  <Stack
                     spacing={2}
                     backgroundColor="whiteAlpha.900"
                     boxShadow="base"
@@ -93,7 +88,7 @@ const Login = () => {
                     padding = "20px"
                     alignItems = "center"
                     justifyContent = "center"
-                >
+                  >
                     <FormControl justifyContent = "center">
                         <Input type="username" placeholder="Family Username" />
                     </FormControl>
@@ -116,42 +111,23 @@ const Login = () => {
                       Login
                     </Button>
 
-                    {/* <Text>
-                      Not registered yet? {' '}
-                      <Link color='teal.500' href='/signup'>
-                        Sign Up Family
-                      </Link>
-                    </Text> */}
-                  <Stack
-                    flexDir = "row"
-                    justifyContent = "center"
-                  >
-                    <FormControl minW = {{base:"80%"}}>
-                        <FormHelperText textAlign="right" color = "gray">
-                        <p>Not registered yet?</p> 
-                      </FormHelperText>
-                    </FormControl>
-
-                    <FormControl minW = {{base:"80%"}}>
-                        <FormHelperText textAlign="left" color = "gray">
-                        <Link textDecoration = "underline" color='#44accf' href='/signup'>Sign Up Family</Link>
-                      </FormHelperText>
-                    </FormControl>
-                
-                  </Stack>
-                   {/*} <Button
-                    borderRadius={0}
-                    type="submit"
-                    variant="solid"
-                    colorScheme='blue'
-                    backgroundColor = "#44accf"
-                    width="full"
-                    onClick={handleClickSignUp}
+                    <Stack
+                      flexDir = "row"
+                      justifyContent = "center"
                     >
-                        Sign Up Family
-                    </Button> */}
+                      <FormControl minW = {{base:"80%"}}>
+                          <FormHelperText textAlign="right" color = "gray">
+                          <p>Not registered yet?</p> 
+                        </FormHelperText>
+                      </FormControl>
 
-                </Stack>
+                      <FormControl minW = {{base:"80%"}}>
+                          <FormHelperText textAlign="left" color = "gray">
+                          <Link textDecoration = "underline" color='#44accf' href='/signup'>Sign Up Family</Link>
+                        </FormHelperText>
+                      </FormControl>
+                    </Stack>
+                  </Stack>
                 </form>
             </Box>
             </Stack>
