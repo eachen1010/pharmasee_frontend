@@ -30,11 +30,7 @@ const SignUp = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         try {
-          //navigate('/dashboard');
-          //reset();
-          const user = event.target.elements.newusername.value;
-          const pass = event.target.elements.newpassword.value;
-          
+          navigate('/dashboard');
         } catch (e) {
           console.log(e);//setError('Failed to log in');
         }
