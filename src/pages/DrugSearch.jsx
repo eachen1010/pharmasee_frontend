@@ -72,6 +72,7 @@ const DrugSearch = () => {
     }
 
     const [value, setValue] = useState('1');
+    const [safe, setSafe] = useState(true);
     
     return (
         <>
@@ -143,7 +144,7 @@ const DrugSearch = () => {
                         justifyContent: 'center',
                       }}>
                         {/* return result decides SafeModal vs NotSafeModal */}
-                        <SafeModal/>
+                        <SafeModal safe={safe}/>
                     </div>
                 </div>
             </Flex>
