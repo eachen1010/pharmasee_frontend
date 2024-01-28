@@ -99,7 +99,7 @@ const Login = () => {
                     </FormControl>
                     <FormControl>
                         <Input type={"password"} placeholder="Password"/>
-                    <FormHelperText textAlign="right" color = "gray">
+                    <FormHelperText textAlign="right" color = "gray" textDecoration = "underline">
                         <p> Forgot password?</p>
                     </FormHelperText>
                     </FormControl>
