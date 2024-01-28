@@ -42,7 +42,7 @@ const SafeModal = ({safe}) => {
             marginTop: '23vh'
           }}>
             {safe ? (<Image src={greenCheck} paddingTop='25px' alt='green checkmark' width="180px"/>) : <Image src={redX} paddingTop='22px' paddingBottom={0} alt='red X' width="180px"/>}
-            {safe ? (<ModalHeader fontSize='4xl' fontWeight='bold'> Gayathri</ModalHeader>) : <ModalHeader justifyContent='center' fontSize='4xl' fontWeight='bold' paddingTop={0} paddingBottom={0}>Warning</ModalHeader>}
+            {safe ? (<ModalHeader fontSize='4xl' fontWeight='bold'> Safe to Use</ModalHeader>) : <ModalHeader justifyContent='center' fontSize='4xl' fontWeight='bold' paddingTop={0} paddingBottom={0}>Warning</ModalHeader>}
             {safe ? null : (<ModalHeader fontSize='2xl' fontWeight='bold' paddingTop={0}> Consult your doctor</ModalHeader>)}
             <ModalCloseButton />
             <ModalBody>

@@ -85,7 +85,7 @@ const DrugSearch = () => {
     }
 
     const [value, setValue] = useState('1');
-    const [safe, setSafe] = useState(true);
+    const [safe, setSafe] = useState(false);
     
     return (
         <>
