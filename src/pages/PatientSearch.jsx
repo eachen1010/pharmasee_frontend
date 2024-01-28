@@ -31,8 +31,7 @@ import {
     FormHelperText,
     InputRightElement
   } from "@chakra-ui/react";
-import { BsFunnel } from "react-icons/bs";
-import pharmaseeLogo from '../components/pharmaseeLogo.png';
+import { BsFunnel, BsPlusCircle } from "react-icons/bs";
 import { Search2Icon } from '@chakra-ui/icons';
 import { useNavigate, useNavigation } from 'react-router-dom';
 
@@ -54,6 +53,7 @@ const PatientSearch = () => {
 
     const PatientTableEntry = ( {patient} ) => {
         const navigate = useNavigate();
+        console.log(patient.firstName, patient.lastName)
         return (
             <Tr >
                 <Td>{patient.firstName} {patient.lastName}</Td>
@@ -133,9 +133,21 @@ const PatientSearch = () => {
                     </Tr>
                     </Thead>
                     <Tbody >
-                        {patients.map(patient => (<PatientTableEntry patient={patient} />))}
+                        {patients && patients.map(patient => (<PatientTableEntry patient={patient} />))}
                     </Tbody>
                     </Table>
+                    <Box as='button' width='81vw' height='10vh' borderWidth='1px' borderRadius='sm' overflow='hidden' borderLeft={0} borderRight={0} borderTop={0}
+                    _hover={{ bg: '#44accf' }}
+                    _active={{
+                        bg: '#44accf',
+                        transform: 'scale(0.98)',
+                        borderColor: '#bec3c9',
+                    }}
+                    >
+                    <div align-items='center' display='flex' flex-direction='row'>
+                        <strong font-weight='100'>Add Member</strong>
+                    </div>
+                    </Box>
                 </TableContainer>
 
             </Flex>

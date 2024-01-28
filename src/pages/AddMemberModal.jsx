@@ -24,25 +24,69 @@ import {
     Center
   } from '@chakra-ui/react';
   import React, { useRef, useState } from 'react';
-//   import { useBackend } from '../../utils.js';
+import Backend from '../utils/utils.js';
 
 const AddMemberModal = ({}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [input, setInput] = useState('')
-  const handleInputChange = (e) => setInput(e.target.value)
+  const handleSubmit = async (event) => {
+    try {
+      const user = {
+        mrn,
+        firstName,
+        lastName,
+        sex,
+        dob,
+        drugs
+      };
+      console.log(user)
+      onClose();
+    
+      const response = await Backend.post(`/family/banhmi/create`, user);
+      console.log(`!!!!!!${response}`)
 
-  // MRN, first name, last name, sex, drugs
+    } catch (e) {
+        console.log(e);
+    }
+  };
 
-  // const [mrn, setMRN] = useState('');
-  // const [firstName, setFirstName] = useState('');
-  // const [lastName, setLastName] = useState('');
-  // const [sex, setSex] = useState('');
-  // const [drugs, setDrugs] = useState(null);
+  const [mrn, setMRN] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [sex, setSex] = useState(null);
+  const [drugs, setDrugs] = useState([]);
+  const [dob, setDOB] = useState('');
+
+  const handleMRNChange = event => {
+    setMRN(parseInt(event.target.value));
+  };
+
+  const handleFirstNameChange = event => {
+    setFirstName(event.target.value);
+  };
+
+  const handleLastNameChange = event => {
+    setLastName(event.target.value);
+  };
+
+  const handleSexChange = event => {
+    setSex(event.target.value);
+  };
+
+  const handleDOBChange = event => {
+    setDOB(event.target.value)
+  };
+
+  const handleDrugChange = event => {
+    let drugResponse = (event.target.value.split(',').map(drug => ({ name: drug.trim(), dosage: '40mg' })))
+    console.log(drugResponse)
+    setDrugs(drugResponse);
+  };
 
   return (
     <>
-      <Button onClick={onOpen} colorScheme='blue'>Compare</Button>
+      <Button onClick={onOpen} colorScheme='blue'>Add Member</Button>
       
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
@@ -57,57 +101,64 @@ const AddMemberModal = ({}) => {
             <ModalHeader fontSize='4xl' fontWeight='bold' marginTop={3} marginBottom={-8}> Add Member</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody >
-                <Stack spacing={2}
-                    backgroundColor="whiteAlpha.900"
-                    rounded = "md"
-                    padding = "20px"
-                    alignItems = "center"
-                    justifyContent = "center"
-                    flexDirection='column'
-                  >
-                    
-                    <FormControl isRequired>
-                        <FormLabel>MRN</FormLabel>
-                        <Input type='mrn' placeholder='1234567' onChange={handleInputChange} width='48vh' />
-                    </FormControl>
+                <form onSubmit={handleSubmit}>
+                  <Stack spacing={2}
+                      backgroundColor="whiteAlpha.900"
+                      rounded = "md"
+                      padding = "20px"
+                      alignItems = "center"
+                      justifyContent = "center"
+                      flexDirection='column'
+                    >
+                      
+                      <FormControl isRequired>
+                          <FormLabel>MRN</FormLabel>
+                          <Input type='mrn' placeholder='1234567' onChange={handleMRNChange} width='48vh' />
+                      </FormControl>
 
-                    <FormControl isRequired>
-                        <FormLabel>First Name</FormLabel>
-                        <Input type='first name' placeholder='Bob' onChange={handleInputChange} />
-                    </FormControl>
+                      <FormControl isRequired>
+                          <FormLabel>First Name</FormLabel>
+                          <Input type='first name' placeholder='Bob' onChange={handleFirstNameChange} />
+                      </FormControl>
 
-                    <FormControl isRequired>
-                        <FormLabel>Last Name</FormLabel>
-                        <Input type='last name' placeholder='Miller' onChange={handleInputChange} />
-                    </FormControl>
+                      <FormControl isRequired>
+                          <FormLabel>Last Name</FormLabel>
+                          <Input type='last name' placeholder='Miller' onChange={handleLastNameChange} />
+                      </FormControl>
 
-                    <FormControl isRequired>
-                        <FormLabel>Sex</FormLabel>
-                        <Select placeholder='Select Sex'>
-                            <option>Male</option>
-                            <option>Female</option>
-                        </Select>
-                    </FormControl>
+                      <FormControl isRequired>
+                          <FormLabel>Sex</FormLabel>
+                          <Select placeholder='Select Sex' onChange={handleSexChange}>
+                              <option>Male</option>
+                              <option>Female</option>
+                          </Select>
+                      </FormControl>
+                      
+                      <FormControl >
+                          <FormLabel marginBottom={-2}>Date of Birth</FormLabel>
+                          <FormHelperText textAlign="left" color = "gray" marginBottom={2}>
+                            <p> Enter DOB in MM/DD/YYYY format</p>
+                          </FormHelperText>
+                          <Input type='drugs' placeholder='07/27/2004' onChange={handleDOBChange} />
+                      </FormControl>
 
-                    <FormControl >
-                        <FormLabel marginBottom={-2}>Current Drugs Used</FormLabel>
-                        <FormHelperText textAlign="left" color = "gray" marginBottom={2}>
-                          <p> Enter all drugs currently used separated by commas</p>
-                        </FormHelperText>
-                        <Input type='drugs' placeholder='Morphine, Fentanyl, etc.' onChange={handleInputChange} />
+                      <FormControl >
+                          <FormLabel marginBottom={-2}>Current Drugs Used</FormLabel>
+                          <FormHelperText textAlign="left" color = "gray" marginBottom={2}>
+                            <p> Enter all drugs currently used separated by commas</p>
+                          </FormHelperText>
+                          <Input type='drugs' placeholder='Morphine, Fentanyl, etc.' onChange={handleDrugChange} />
+                      </FormControl>
 
-                    </FormControl>
-
-                    <Button borderRadius='lg'
-                      type="submit"
-                      variant="solid"
-                      colorScheme='blue'
-                      backgroundColor = "#44accf"
-                      width="full"
-                      marginTop={5} marginBottom={3}>Add New Member</Button>
-
-                </Stack>
-                
+                      <Button borderRadius='lg'
+                        type="submit"
+                        variant="solid"
+                        colorScheme='blue'
+                        backgroundColor = "#44accf"
+                        width="full"
+                        marginTop={5} marginBottom={3}>Add New Member</Button>
+                  </Stack>
+                </form>
                 </ModalBody>
           </ModalContent>
       </Modal>
