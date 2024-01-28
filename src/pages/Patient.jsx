@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Backend from '../utils/utils.js';
+import SafeModal from '../pages/SafeUseModal';
+
 import {
     Flex,
     Stack,
@@ -11,11 +13,19 @@ import {
     Thead,
     Tr,
     Tbody,
+    Button,
     Td,
     Tag,
     TagLabel,
-    HStack
+    HStack,
+    Box,
+    Radio,
+    RadioGroup,
+    InputGroup,
+    InputLeftElement,
+    Input
   } from "@chakra-ui/react";
+import { Search2Icon } from '@chakra-ui/icons'
 import { useLocation } from 'react-router-dom';
 
 const isStateValid = (state) => {
@@ -26,8 +36,58 @@ const isStateValid = (state) => {
 };
 
 
+
+
 const Patient = () => {
+    const [drugList, setDrugList] = useState([]);
+    const [value, setValue] = useState('1');
     const [patient, setPatient] = useState([]);
+    const [safe, setSafe] = useState(true);
+    const [popUp, setPopUp] = useState(false);
+    const [drug2, setDrug2] = useState('defaultDrug');
+    
+    const getDrugList = async () => {
+        try {
+            const res = await Backend.get(`/drugs`);
+            //console.log(res.data);
+            setDrugList(res.data);
+            
+            return res.data;
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const filterDrugs = async ( newInput ) => {
+        try {
+            if (newInput.length === 0) {
+                const res = getDrugList();
+                setDrugList(res.data);
+                return res.data;
+            } else {
+                const res = await Backend.get(`/drugs/${newInput}`);
+                setDrugList(res.data);
+                return res.data;
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        getDrugList();
+    }, []);
+
+    const DrugTableEntry = ( {drug} ) => {
+        return (
+            <Box maxW='81vw' borderWidth='1px' borderRadius='lg' overflow='hidden' borderLeft={0} borderRight={0} borderTop={0}>
+                <Tr justifyContent="space-evenly">
+                    <Td> <Radio value={drug.drugName} ></Radio> </Td>
+                    <Td>{drug.drugName}</Td>
+                </Tr>
+            </Box>
+        );
+    };
 
     const { state } = useLocation();
     let patientMrn;
@@ -61,6 +121,33 @@ const Patient = () => {
     useEffect(() => {
         getPatient();
     }, []);
+
+    const compareDrugs = async (drug1) => {
+        try {
+            const meds = patient.drugs;
+            // await Promise.all(patient.drugs.map(drug => Backend.get(`/ddi/${drug1}/${drug}`))).then((result) => interaction.push(result));
+            if(meds)
+            {
+                for(let i = 0; i<meds.length;++i)
+                {
+                    setDrug2(meds[i].name);
+                    const res = await Backend.get(`/ddi/${drug1}/${meds[i].name}`); 
+                    if(res.data.length !== 0)
+                    {
+                        setSafe(false);
+                        setDrug2(meds[i].name);
+                        setPopUp(true);
+                        return;
+                    }
+                }
+            }
+            setSafe(true);
+            setPopUp(true);
+        }
+        catch (err){
+            console.log(err.message);
+        }
+    }
 
     // const drugs = patient.drugs;
 
@@ -105,21 +192,46 @@ const Patient = () => {
                         ))}
                     </HStack>
                 </Stack>
-                <div marginTop="1vw">
+                <Stack spacing={2} direction="row" width='auto' justifyContent="space-evenly">
+                    <InputGroup>
+                        <InputLeftElement pointerEvents='none'>
+                        <Search2Icon color='gray.300' />
+                        </InputLeftElement>
+                        <Input width='81vw' placeholder='Enter Drug Name' onChange={(e) => filterDrugs(e.target.value) } />
+                    </InputGroup>
+                </Stack>
+                <div margin-top="1vw">
                     <TableContainer width='81vw' height='50vh' marginTop='5vh' overflowY='scroll'>
                         <Table variant='unstyled'>
                             <Thead style={{ backgroundColor: '#44ACCF', top: '0px', position: 'sticky', zIndex: 999 }}>
                             <Tr>
                                 <Th style={{ color: 'white' }}>Drug Name</Th>
-                                <Th style={{ color: 'white' }}>Dosage</Th>
-                                <Th></Th>
                             </Tr>
-                            </Thead>  
-                            <Tbody >
-                                { patient.drugs ? patient.drugs.map(drug => (<PatientDrugEntry drug={drug}/>)) : null }
-                            </Tbody> 
+                            </Thead>   
+                            <Tbody>
+                                <Box>
+                                    <RadioGroup onChange={setValue} value={value} >
+                                        <Stack direction='column'>
+                                            {drugList ? (drugList.map(drug => (<DrugTableEntry drug={drug} />) )): null}
+                                        </Stack>
+                                        
+                                    </RadioGroup>
+                                </Box>
+                            </Tbody>
                         </Table>
                     </TableContainer>
+                    <div 
+                    style={{
+                        marginTop: '5vh',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                        <Button onClick = {() => compareDrugs(value)} backgroundColor='#44accf' colorScheme='blue'>Compare</Button>
+                        {/* {<CompareDrugs drug1={value}/>} */}
+                        {popUp ? (<SafeModal safe={safe} drug1={value} drug2={drug2} setPopUp={setPopUp}/>) : null}
+                    </div>
                 </div>
             </Flex>
         </Flex>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Backend from '../utils/utils.js';
+
 // import Fuse from 'fuse.js';
 import {
     Flex,
@@ -54,7 +55,7 @@ const PatientSearch = () => {
         const navigate = useNavigate();
         console.log(patient.firstName, patient.lastName)
         return (
-            <Tr >{/*justifyContent="space-evenly">*/}
+            <Tr >
                 <Td>{patient.firstName} {patient.lastName}</Td>
                 <Td>{patient.dob}</Td>
                 <Td textAlign="right">

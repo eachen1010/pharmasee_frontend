@@ -33,27 +33,18 @@ import {
  * 
  * @returns page
  */
+
 const DrugSearch = () => {
 
     const [drugList, setDrugList] = useState([]);
     const [value, setValue] = useState('1');
-    const [safe, setSafe] = useState(false);
-
-    const compareDrugs = async ({drug1, drug2}) => {
-        try {
-            const res = await Backend.get(`/ddi/${drug1}/${drug2}`);
-            console.log(res.data);
-        }
-        catch (err){
-            console.log(err.message);
-        }
-    }
 
     const getDrugList = async () => {
         try {
             const res = await Backend.get(`/drugs`);
             console.log(res.data);
             setDrugList(res.data);
+            
             return res.data;
           } catch (err) {
             console.log(err);
@@ -133,7 +124,7 @@ const DrugSearch = () => {
                         <Input width='81vw' placeholder='Enter Drug Name' onChange={(e) => filterDrugs(e.target.value) } />
                     </InputGroup>
                 </Stack>
-                <div marginTop="1vw">
+                <div margin-top="1vw">
                     <TableContainer width='81vw' height='50vh' marginTop='5vh' overflowY='scroll'>
                         <Table variant='unstyled'>
                             <Thead style={{ backgroundColor: '#44ACCF', top: '0px', position: 'sticky', zIndex: 999 }}>
@@ -161,7 +152,7 @@ const DrugSearch = () => {
                         justifyContent: 'center',
                       }}>
                         {/* return result decides SafeModal vs NotSafeModal */}
-                        <SafeModal safe={safe}/>
+                        {<compareDrugs drug1={value} drug2={value}/>}
                     </div>
                 </div>
             </Flex>
