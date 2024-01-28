@@ -1,22 +1,12 @@
 import {
-    Button,
-    Flex,
-    FormControl,
-    FormLabel,
-    Heading,
     Image,
-    Input,
     Modal,
     ModalBody,
     ModalCloseButton,
     ModalContent,
     ModalOverlay,
-    Select,
-    VStack,
     Text,
-    useToast,
     ModalHeader,
-    ModalFooter,
     useDisclosure
   } from '@chakra-ui/react';
   import React, { useRef, useState, useEffect } from 'react';
