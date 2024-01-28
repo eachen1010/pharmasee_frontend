@@ -47,7 +47,7 @@ const HelpModal = () => {
   
     return (
       <>
-        <Button onClick = {onOpen} fontSize='5vh' fontColor='white' background='#a6a6a6' colorScheme='blue'>?</Button>
+        <Button onClick = {onOpen} fontSize='6vh' width='8vh' height='8vh' borderRadius='200px'  fontColor='white' background='#a6a6a6' colorScheme='blue'>?</Button>
 
         <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
@@ -261,15 +261,14 @@ const Patient = () => {
                         <Button onClick = {() => compareDrugs(value)} backgroundColor='#44accf' colorScheme='blue'>Compare</Button>
                         {popUp ? (<SafeModal safe={safe} drug1={value} drug2={drug2} setPopUp={setPopUp}/>) : null}
                     </div>
-                    <div style={{
-                        marginTop: '5vh',
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'right',
-                        justifyContent: 'right',
+                </div>
+                <div style={{
+                        position:'fixed',
+                        bottom: '15px',
+                        right: '20px',
+                        zIndex: '999'
                       }}>
                         {<HelpModal/>}
-                    </div>
                 </div>
             </Flex>
         </Flex>
