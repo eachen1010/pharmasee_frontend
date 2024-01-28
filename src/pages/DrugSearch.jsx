@@ -39,6 +39,16 @@ const DrugSearch = () => {
     const [value, setValue] = useState('1');
     const [safe, setSafe] = useState(false);
 
+    const compareDrugs = async ({drug1, drug2}) => {
+        try {
+            const res = await Backend.get(`/ddi/${drug1}/${drug2}`);
+            console.log(res.data);
+        }
+        catch (err){
+            console.log(err.message);
+        }
+    }
+
     const getDrugList = async () => {
         try {
             const res = await Backend.get(`/drugs`);

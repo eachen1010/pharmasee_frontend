@@ -53,13 +53,37 @@ const PatientSearch = () => {
     const PatientTableEntry = ( {patient} ) => {
         const navigate = useNavigate();
         return (
-            <Tr justifyContent="space-evenly">
+            <Tr >{/*justifyContent="space-evenly">*/}
                 <Td>{patient.firstName} {patient.lastName}</Td>
                 <Td>{patient.dob}</Td>
-                <Td>
-                    <Button backgroundColor="#44ACCF" onClick={() => {
+                <Td textAlign="right">
+
+                <Box
+                    as='button'
+                    height='5vh'
+                    width='5vw'
+                    lineHeight='1.2'
+                    transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+                    border='1px'
+                    px='8px'
+                    borderRadius='10px'
+                    fontSize='16px'
+                    fontWeight='semibold'
+                    bg='#8ecfe6'
+                    borderColor='#44accf'
+                    color='white'
+                    _hover={{ bg: '#44accf' }}
+                    _active={{
+                        bg: '#44accf',
+                        transform: 'scale(0.98)',
+                        borderColor: '#bec3c9',
+                    }}
+                    onClick={() => {
                         navigate('/patient', {state: {"patientMrn": patient.mrn}});   
-                    }}><BsFunnel style={{ color: 'white' }} /></Button>
+                    }}
+                    >
+                    View
+                    </Box>
                 </Td>
             </Tr>
         );
