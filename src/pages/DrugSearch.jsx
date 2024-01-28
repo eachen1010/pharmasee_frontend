@@ -92,7 +92,7 @@ const DrugSearch = () => {
     // };
 
     const DrugTableEntry = ( {drug} ) => {
-
+        console.log()
         return (
             <Box maxW='81vw' borderWidth='1px' borderRadius='lg' overflow='hidden' borderLeft={0} borderRight={0} borderTop={0}>
                 <Tr justifyContent="space-evenly">
@@ -103,7 +103,7 @@ const DrugSearch = () => {
         );
     };
 
-    const [value, setValue] = useState('1')
+    const [value, setValue] = useState('1');
     
     return (
         <>
@@ -148,25 +148,25 @@ const DrugSearch = () => {
                     </InputGroup>
                 </Stack>
                 <div marginTop="1vw">
-                <TableContainer width='81vw' height='50vh' marginTop='5vh'>
-                    <Table variant='unstyled'>
-                        <Thead style={{ backgroundColor: '#44ACCF', top: '0px', position: 'sticky' }}>
-                        <Tr>
-                            <Th style={{ color: 'white' }}>Drug Name</Th>
-                        </Tr>
-                        </Thead>
-                        <Box overflowY='scroll'>   
+                    <TableContainer width='81vw' height='50vh' marginTop='5vh' overflowY='scroll'>
+                        <Table variant='unstyled'>
+                            <Thead style={{ backgroundColor: '#44ACCF', top: '0px', position: 'sticky', zIndex: 999 }}>
+                            <Tr>
+                                <Th style={{ color: 'white' }}>Drug Name</Th>
+                            </Tr>
+                            </Thead>   
                             <Tbody>
-                                <RadioGroup onChange={setValue} value={value} >
-                                    <Stack direction='column' >
-                                        {DrugList.map(drug => (<DrugTableEntry drug={drug} />))}
-                                    </Stack>
-                                </RadioGroup>
+                                <Box>
+                                    <RadioGroup onChange={setValue} value={value} >
+                                        <Stack direction='column' >
+                                            {DrugList.map(drug => (<DrugTableEntry drug={drug} />))}
+                                        </Stack>
+                                    </RadioGroup>
+                                </Box>
                             </Tbody>
-                        </Box>
-                    </Table>
+                        </Table>
                     </TableContainer>
-                    </div>
+                </div>
             </Flex>
         </Flex>
       </>
