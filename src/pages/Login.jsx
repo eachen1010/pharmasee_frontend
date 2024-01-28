@@ -4,6 +4,7 @@ import pharmaseeLogo from '../components/pharmaseeLogo.png';
 import pharmaseeName from '../components/pharmasee.png';
 
 import {
+    Heading,
     Flex,
     Input,
     Button,
@@ -50,6 +51,7 @@ const Login = () => {
             > 
 
             <Box bg="#44accf" minW={{base:"40%"}}>
+              <Heading mt = "50%" ml = "7%" color="white">Keep your family safe by staying informed on your loved ones' medications!</Heading>
             </Box>
 
             <Stack
@@ -72,7 +74,7 @@ const Login = () => {
                 <Stack
                    // maxW = {{base:"60%"}}
                     //maxW = "10vw"
-                    spacing={4}
+                    spacing={2}
                     backgroundColor="whiteAlpha.900"
                     boxShadow="base"
                     rounded = "md"
@@ -81,12 +83,12 @@ const Login = () => {
                     justifyContent = "center"
                 >
                     <FormControl justifyContent = "center">
-                        <Input type="username" placeholder="Organization Username" />
+                        <Input type="username" placeholder="Family Username" />
                     </FormControl>
                     <FormControl>
                         <Input type={"password"} placeholder="Password"/>
-                    <FormHelperText textAlign="right">
-                        <p>forgot password?</p>
+                    <FormHelperText textAlign="right" color = "gray">
+                        <p> Forgot password?</p>
                     </FormHelperText>
                     </FormControl>
 
@@ -100,6 +102,24 @@ const Login = () => {
                     onClick={handleClick}
                     >
                         Login
+                    </Button>
+
+                    <FormControl justifyContent = "right">
+                        <FormHelperText textAlign="right" color = "gray">
+                        <p>Not registered yet?</p>
+                      </FormHelperText>
+                    </FormControl>
+
+                    <Button
+                    borderRadius={0}
+                    type="submit"
+                    variant="solid"
+                    colorScheme='blue'
+                    backgroundColor = "#44accf"
+                    width="full"
+                    onClick={handleClick}
+                    >
+                        Sign Up Family
                     </Button>
 
                 </Stack>
