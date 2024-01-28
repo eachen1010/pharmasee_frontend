@@ -37,7 +37,7 @@ const DrugSearch = () => {
 
     const [drugList, setDrugList] = useState([]);
     const [value, setValue] = useState('1');
-    const [safe, setSafe] = useState(true);
+    const [safe, setSafe] = useState(false);
 
     const getDrugList = async () => {
         try {
