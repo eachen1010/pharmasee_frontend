@@ -12,7 +12,9 @@ import {
     Box,
     FormControl,
     FormHelperText,
-    Image
+    Image,
+    Text,
+    Link
   } from "@chakra-ui/react";
   
 
@@ -111,16 +113,33 @@ const Login = () => {
                     width="full"
                     onClick={handleClickLogin}
                     >
-                        Login
+                      Login
                     </Button>
 
-                    <FormControl justifyContent = "right">
+                    {/* <Text>
+                      Not registered yet? {' '}
+                      <Link color='teal.500' href='/signup'>
+                        Sign Up Family
+                      </Link>
+                    </Text> */}
+                  <Stack
+                    flexDir = "row"
+                    justifyContent = "center"
+                  >
+                    <FormControl minW = {{base:"80%"}}>
                         <FormHelperText textAlign="right" color = "gray">
-                        <p>Not registered yet?</p>
+                        <p>Not registered yet?</p> 
                       </FormHelperText>
                     </FormControl>
 
-                    <Button
+                    <FormControl minW = {{base:"80%"}}>
+                        <FormHelperText textAlign="left" color = "gray">
+                        <Link textDecoration = "underline" color='#44accf' href='/signup'>Sign Up Family</Link>
+                      </FormHelperText>
+                    </FormControl>
+                
+                  </Stack>
+                   {/*} <Button
                     borderRadius={0}
                     type="submit"
                     variant="solid"
@@ -130,7 +149,7 @@ const Login = () => {
                     onClick={handleClickSignUp}
                     >
                         Sign Up Family
-                    </Button>
+                    </Button> */}
 
                 </Stack>
                 </form>
