@@ -23,11 +23,14 @@ import {
     useDisclosure,
     Center
   } from '@chakra-ui/react';
-  import React, { useRef, useState } from 'react';
+  import React, { useRef, useState, useEffect } from 'react';
+  import { useLocation } from 'react-router-dom';
 import Backend from '../utils/utils.js';
 
 const AddMemberModal = ({}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const location = useLocation();
+  const [familyname, setFamilyname] = useState('');
 
   const [input, setInput] = useState('')
   const handleSubmit = async (event) => {
@@ -43,8 +46,8 @@ const AddMemberModal = ({}) => {
 
       onClose();
     
-      const response = await Backend.post(`/family/banhmi/create`, user);
-
+      const response = await Backend.post(`/family/${familyname}/create`, user);
+      window.location.reload();
     } catch (e) {
         console.log(e);
     }
@@ -81,6 +84,11 @@ const AddMemberModal = ({}) => {
     let drugResponse = (event.target.value.split(',').map(drug => ({ name: drug.trim(), dosage: '40mg' })))
     setDrugs(drugResponse);
   };
+
+  useEffect(() => {
+    const loc = location.pathname.split('/');
+    setFamilyname(loc[loc.length-1]);
+}, [location.pathname]);
 
   return (
     <>
