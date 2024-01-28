@@ -168,7 +168,7 @@ const Patient = () => {
             height="95vh"
             alignItems="center"
             >
-                <Text fontSize='5xl'>{patient.firstName} {patient.lastName}</Text>
+                <Text fontFamily="raleway" fontSize='5xl'>{patient.firstName} {patient.lastName}</Text>
                 <Stack spacing={4} direction='row' justifyContent="space-evenly" marginBottom='5vh'>
                     <HStack spacing={4}>
                         {['md'].map((size) => (
@@ -201,7 +201,7 @@ const Patient = () => {
                     </InputGroup>
                 </Stack>
                 <div margin-top="1vw">
-                    <TableContainer width='81vw' height='50vh' marginTop='5vh' overflowY='scroll'>
+                    <TableContainer width='81vw' maxHeight='50vh' marginTop='5vh' overflowY='scroll'>
                         <Table variant='unstyled'>
                             <Thead style={{ backgroundColor: '#44ACCF', top: '0px', position: 'sticky', zIndex: 999 }}>
                             <Tr>
