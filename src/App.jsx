@@ -10,6 +10,7 @@ import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import SafeModal from './pages/SafeUseModal';
 import NotSafeModal from './pages/NotSafeUseModal';
+import AddMemberModal from './pages/AddMemberModal';
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
           <Route path='/patient' element={<Patient />} />
           <Route path="/safe-modal" element={<SafeModal />} />
           <Route path="/not-safe-modal" element={<NotSafeModal />} />
+          <Route path="/add-member-modal" element={<AddMemberModal />} />
         </Routes>
       </Router>
     </ChakraProvider>
