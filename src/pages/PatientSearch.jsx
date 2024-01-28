@@ -141,12 +141,10 @@ const PatientSearch = () => {
                         transform: 'scale(0.98)',
                         borderColor: '#bec3c9',
                     }}
-                    justify-content='center'
-                    display='flex'
-                    flex-direction='row'
                     >
-                    <BsPlusCircle />
-                    <p padding-left='2vw'>Add Member</p>
+                    <div align-items='center' display='flex' flex-direction='row'>
+                        <strong font-weight='100'>Add Member</strong>
+                    </div>
                     </Box>
                 </TableContainer>
             </Flex>
