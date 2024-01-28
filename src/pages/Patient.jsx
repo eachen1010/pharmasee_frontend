@@ -126,15 +126,12 @@ const Patient = () => {
         try {
             const meds = patient.drugs;
             // await Promise.all(patient.drugs.map(drug => Backend.get(`/ddi/${drug1}/${drug}`))).then((result) => interaction.push(result));
-            console.log(meds);
             if(meds)
             {
                 for(let i = 0; i<meds.length;++i)
                 {
-                    console.log(`meds[${i}] = ${meds[i].name}`);
                     setDrug2(meds[i].name);
                     const res = await Backend.get(`/ddi/${drug1}/${meds[i].name}`); 
-                    console.log("res.data: ",res.data);
                     if(res.data.length !== 0)
                     {
                         setSafe(false);
@@ -146,8 +143,6 @@ const Patient = () => {
             }
             setSafe(true);
             setPopUp(true);
-            console.log("Pop up is: ",popUp);
-            console.log(`safe is ${safe}`);
         }
         catch (err){
             console.log(err.message);

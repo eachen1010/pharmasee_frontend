@@ -51,7 +51,7 @@ const SafeModal = ({safe, drug1, drug2, setPopUp}) => {
             <ModalCloseButton onClick={() => setPopUp(false)}/> 
     
             <ModalBody>
-              {safe ? (<Text mb='1rem' paddingBottom='15px'>{ `Consult with your doctor prior to taking. ${drug1} is combined with ${drug2}.`} </Text>) : (<Text mb='1rem' paddingBottom='15px' textAlign='center'>{`The risk or severity of adverse effects can be increased when ${drug1} is combined with ${drug2}.`}</Text>)}
+              {safe ? (<Text mb='1rem' paddingBottom='15px'>Consult with your doctor prior to taking. </Text>) : (<Text mb='1rem' paddingBottom='15px' textAlign='center'>{`The risk or severity of adverse effects can be increased when ${drug1} is combined with ${drug2}.`}</Text>)}
             </ModalBody>
           </ModalContent>
       </Modal>
