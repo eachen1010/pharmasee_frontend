@@ -86,12 +86,12 @@ const AddMemberModal = ({}) => {
 
   return (
     <>
-      <Button onClick={onOpen} bg='#F3f3f3'
-      _hover={{ bg: '#44accf' }}
+      <Button onClick={onOpen} backgroundColor='#44accf' color='white'
+      _hover={{ bg: '#8ecfe6' }}
       _active={{
           bg: '#44accf',
           transform: 'scale(0.98)',
-          borderColor: '#bec3c9',
+          borderColor: '#bec3c9'
       }}>
         Add Member</Button>
       
