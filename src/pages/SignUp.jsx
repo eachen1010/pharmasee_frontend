@@ -16,7 +16,7 @@ import {
   } from "@chakra-ui/react";
   
 
-const Login = () => {
+const SignUp = () => {
 
     const navigate = useNavigate();
     //const [error, setError] = useState('');
@@ -28,7 +28,7 @@ const Login = () => {
     //     };
     //   });
 
-    const handleClickLogin = async data => {
+    const handleClick = async data => {
         //const { username, password } = data;
         try {
           navigate('/search');
@@ -38,16 +38,6 @@ const Login = () => {
         }
       };
 
-    const handleClickSignUp = async data => {
-      //const { username, password } = data;
-      try {
-        navigate('/signup');
-        //reset();
-      } catch (e) {
-        console.log(e);//setError('Failed to log in');
-      }
-    };
-
 
     return (
         <>
@@ -56,12 +46,10 @@ const Login = () => {
             width="100wh"
             height="100vh"
             backgroundColor="white"
-            //justifyContent="center"
-            //alignItems="center"
             > 
 
             <Box bg="#44accf" minW={{base:"40%"}}>
-              <Heading mt = "50%" ml = "7%" color="white">Keep your family safe by staying informed on your loved ones' medications!</Heading>
+              <Heading mt = "50%" ml = "7%" color="white">Come up with a unique family username!</Heading>
             </Box>
 
             <Stack
@@ -97,9 +85,6 @@ const Login = () => {
                     </FormControl>
                     <FormControl>
                         <Input type={"password"} placeholder="Password"/>
-                    <FormHelperText textAlign="right" color = "gray">
-                        <p> Forgot password?</p>
-                    </FormHelperText>
                     </FormControl>
 
                     <Button
@@ -109,27 +94,9 @@ const Login = () => {
                     colorScheme='blue'
                     backgroundColor = "#44accf"
                     width="full"
-                    onClick={handleClickLogin}
+                    onClick={handleClick}
                     >
-                        Login
-                    </Button>
-
-                    <FormControl justifyContent = "right">
-                        <FormHelperText textAlign="right" color = "gray">
-                        <p>Not registered yet?</p>
-                      </FormHelperText>
-                    </FormControl>
-
-                    <Button
-                    borderRadius={0}
-                    type="submit"
-                    variant="solid"
-                    colorScheme='blue'
-                    backgroundColor = "#44accf"
-                    width="full"
-                    onClick={handleClickSignUp}
-                    >
-                        Sign Up Family
+                        Create Family
                     </Button>
 
                 </Stack>
@@ -140,4 +107,4 @@ const Login = () => {
       </>
     );
 };
-export default Login;
+export default SignUp;
