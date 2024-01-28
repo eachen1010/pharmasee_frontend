@@ -56,7 +56,6 @@ const DrugSearch = () => {
     // };
 
     const PatientTableEntry = ( {patient} ) => {
-        
         return (
             <Tr>
                 <Td>{patient.first_name} {patient.last_name}</Td>
@@ -111,6 +110,7 @@ const DrugSearch = () => {
                         <Input width='81vw' placeholder='Enter Drug Name' />
                     </InputGroup>
                 </Stack>
+                <div>
                 <TableContainer width='81vw' marginTop='5vh'>
                     <Table variant='unstyled'>
                         <Thead style={{ backgroundColor: '#44ACCF' }}>
@@ -150,6 +150,7 @@ const DrugSearch = () => {
                         </Tbody>
                     </Table>
                     </TableContainer>
+                    </div>
             </Flex>
         </Flex>
       </>
