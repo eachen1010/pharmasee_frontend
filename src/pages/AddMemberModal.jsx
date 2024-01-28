@@ -42,7 +42,7 @@ const AddMemberModal = ({}) => {
 
   return (
     <>
-      <Button onClick={onOpen} colorScheme='blue'>Compare</Button>
+      <Button onClick={onOpen} colorScheme='blue'>Add Member</Button>
       
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
