@@ -3,38 +3,20 @@ import Navbar from '../components/Navbar';
 import Backend from '../utils/utils.js';
 import {
     Flex,
-    Heading,
-    Input,
-    Button,
-    InputGroup,
     Stack,
-    InputLeftElement,
     TableContainer,
     Table,
-    TableCaption,
     Text,
     Th,
     Thead,
     Tr,
     Tbody,
     Td,
-    Tfoot,
     Tag,
     TagLabel,
-    HStack,
-    chakra,
-    Box,
-    Link,
-    Avatar,
-    FormControl,
-    FormHelperText,
-    InputRightElement
+    HStack
   } from "@chakra-ui/react";
-import { BsFunnel } from "react-icons/bs";
-import pharmaseeLogo from '../components/pharmaseeLogo.png';
-import { Search2Icon } from '@chakra-ui/icons';
-import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const isStateValid = (state) => {
     if (!state) return false;
@@ -127,9 +109,6 @@ const Patient = () => {
                             </Tr>
                             </Thead>  
                             <Tbody >
-                                {/* {console.log} */}
-                                {/* <PatientDrugEntry drug={patient.drugs[0]}/>  */}
-                                {/* { (patient.drugs).map((d) => (<PatientDrugEntry drug={d} />))} */}
                                 { patient.drugs ? patient.drugs.map(drug => (<PatientDrugEntry drug={drug}/>)) : null }
                             </Tbody> 
                         </Table>
