@@ -6,7 +6,6 @@ import SafeModal from '../pages/SafeUseModal';
 // import Fuse from 'fuse.js';
 import {
     Flex,
-    Heading,
     Input,
     Button,
     InputGroup,
@@ -21,24 +20,23 @@ import {
     Td,
     Tag,
     TagLabel,
+    Tfoot,
     HStack,
-    chakra,
     Box,
     Radio,
     Text,
-    RadioGroup,
-    Link,
-    Avatar,
-    FormControl,
-    FormHelperText,
-    InputRightElement
+    RadioGroup
   } from "@chakra-ui/react";
   import { Search2Icon } from '@chakra-ui/icons'
 
-
+/**
+ * 
+ * @returns page
+ */
 const DrugSearch = () => {
 
     const [drugList, setDrugList] = useState([]);
+    const [value, setValue] = useState('1');
 
     const getDrugList = async () => {
         try {
@@ -51,12 +49,27 @@ const DrugSearch = () => {
           }
     };
 
+    const filterDrugs = async ( newInput ) => {
+        try {
+            if (newInput.length === 0) {
+                const res = getDrugList();
+                setDrugList(res.data);
+                return res.data;
+            } else {
+                const res = await Backend.get(`/drugs/${newInput}`);
+                setDrugList(res.data);
+                return res.data;
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     useEffect(() => {
         getDrugList();
     }, []);
 
     const DrugTableEntry = ( {drug} ) => {
-        console.log()
         return (
             <Box maxW='81vw' borderWidth='1px' borderRadius='lg' overflow='hidden' borderLeft={0} borderRight={0} borderTop={0}>
                 <Tr justifyContent="space-evenly">
@@ -113,7 +126,7 @@ const DrugSearch = () => {
                         <InputLeftElement pointerEvents='none'>
                         <Search2Icon color='gray.300' />
                         </InputLeftElement>
-                        <Input width='81vw' placeholder='Enter Drug Name' onChange={filterDrugs} />
+                        <Input width='81vw' placeholder='Enter Drug Name' onChange={(e) => filterDrugs(e.target.value) } />
                     </InputGroup>
                 </Stack>
                 <div marginTop="1vw">
@@ -128,7 +141,7 @@ const DrugSearch = () => {
                                 <Box>
                                     <RadioGroup onChange={setValue} value={value} >
                                         <Stack direction='column'>
-                                            {drugList.map(drug => (<DrugTableEntry drug={drug} />))}
+                                            {drugList ? (drugList.map(drug => (<DrugTableEntry drug={drug} />) )): null}
                                         </Stack>
                                         
                                     </RadioGroup>
@@ -153,4 +166,5 @@ const DrugSearch = () => {
       </>
     );
 };
+
 export default DrugSearch;
