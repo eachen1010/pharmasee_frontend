@@ -41,7 +41,7 @@ const Navbar = () => {
       </ul>
       <div style={{ display:'flex', width: '15%', marginBottom: '1vh', borderRadius: '6px', color: 'white' }}>
         <Menu>
-          <MenuButton display='flex' justify-Content='center' flex-direction='row' style={{ borderTopLeftRadius: '60px 60px', fontSize: '20px', marginRight: '0px', width: '100%', height: '75px', backgroundColor: '#3892b0'}}> 
+          <MenuButton display='flex' justify-Content='center' flex-direction='row' style={{ borderTopLeftRadius: '60px 60px', borderBottomLeftRadius: '60px 60px', fontSize: '20px', marginRight: '0px', width: '100%', height: '75px', backgroundColor: '#3892b0'}}> 
             <p>TheMillers</p>
           </MenuButton>
           <MenuList>
