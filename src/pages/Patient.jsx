@@ -168,7 +168,7 @@ const Patient = () => {
             height="95vh"
             alignItems="center"
             >
-                <Text fontFamily="raleway" fontSize='5xl'>{patient.firstName} {patient.lastName}</Text>
+                <Text textShadow='2px 1px 2px gray' fontSize='5xl'>{patient.firstName} {patient.lastName}</Text>
                 <Stack spacing={4} direction='row' justifyContent="space-evenly" marginBottom='5vh'>
                     <HStack spacing={4}>
                         {['md'].map((size) => (
