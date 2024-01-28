@@ -104,14 +104,21 @@ const Patient = () => {
                     <HStack spacing={4}>
                         {['md'].map((size) => (
                             <Tag size={size} key={size} variant='subtle' colorScheme='green'>
-                                <TagLabel>DOB: {patient.dob}</TagLabel>
+                                <TagLabel><strong>DOB: </strong> {patient.dob}</TagLabel>
                             </Tag>
                         ))}
                     </HStack>
                     <HStack spacing={4}>
                         {['md'].map((size) => (
                             <Tag size={size} key={size} variant='subtle' colorScheme='purple'>
-                                <TagLabel>Kaiser Permanente</TagLabel>
+                                <TagLabel><strong>MRN: </strong>{patient.mrn}</TagLabel>
+                            </Tag>
+                        ))}
+                    </HStack>
+                    <HStack spacing={4}>
+                        {['md'].map((size) => (
+                            <Tag size={size} key={size} variant='subtle' colorScheme='orange'>
+                                <TagLabel>{patient.sex}</TagLabel>
                             </Tag>
                         ))}
                     </HStack>
