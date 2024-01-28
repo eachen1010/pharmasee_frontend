@@ -55,10 +55,8 @@ const PatientSearch = () => {
     };
 
     const PatientTableEntry = ( {patient} ) => {
-        console.log(`!!!!!!!!!!!!!!!${typeof(patient)}`)
         return (
             <Tr justifyContent="space-evenly">
-                <Td>{patient.mrn}</Td>
                 <Td>{patient.firstName} {patient.lastName}</Td>
                 <Td>
                     <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
@@ -111,7 +109,6 @@ const PatientSearch = () => {
                     <Table variant='simple' >
                     <Thead style={{ backgroundColor: '#44ACCF' }}>
                     <Tr>
-                        <Th style={{ color: 'white' }}>MRN</Th>
                         <Th style={{ color: 'white' }}>Patient Name</Th>
                         <Th style={{ color: 'white' }}></Th>
                     </Tr>
