@@ -30,9 +30,10 @@ import {
     FormHelperText,
     InputRightElement
   } from "@chakra-ui/react";
-  import { BsFunnel } from "react-icons/bs";
-  import pharmaseeLogo from '../components/pharmaseeLogo.png';
-  import { Search2Icon } from '@chakra-ui/icons'
+import { BsFunnel } from "react-icons/bs";
+import pharmaseeLogo from '../components/pharmaseeLogo.png';
+import { Search2Icon } from '@chakra-ui/icons';
+import { useNavigate, useNavigation } from 'react-router-dom';
 
 const PatientSearch = () => {
 
@@ -40,7 +41,7 @@ const PatientSearch = () => {
 
     const getPatients = async () => {
         try {
-            const res = await Backend.get(`/patients`);
+            const res = await Backend.get(`/family/banhmi`);
             setPatients(res.data);
             console.log('Patients after update:', patients);
             return res.data;
@@ -50,11 +51,39 @@ const PatientSearch = () => {
     };
 
     const PatientTableEntry = ( {patient} ) => {
+        const navigate = useNavigate();
         return (
-            <Tr justifyContent="space-evenly">
+            <Tr >{/*justifyContent="space-evenly">*/}
                 <Td>{patient.firstName} {patient.lastName}</Td>
-                <Td>
-                    <Button backgroundColor="#44ACCF"><BsFunnel style={{ color: 'white' }} /></Button>
+                <Td>{patient.dob}</Td>
+                <Td textAlign="right">
+
+                <Box
+                    as='button'
+                    height='5vh'
+                    width='5vw'
+                    lineHeight='1.2'
+                    transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+                    border='1px'
+                    px='8px'
+                    borderRadius='10px'
+                    fontSize='16px'
+                    fontWeight='semibold'
+                    bg='#8ecfe6'
+                    borderColor='#44accf'
+                    color='white'
+                    _hover={{ bg: '#44accf' }}
+                    _active={{
+                        bg: '#44accf',
+                        transform: 'scale(0.98)',
+                        borderColor: '#bec3c9',
+                    }}
+                    onClick={() => {
+                        navigate('/patient', {state: {"patientMrn": patient.mrn}});   
+                    }}
+                    >
+                    View
+                    </Box>
                 </Td>
             </Tr>
         );
@@ -97,7 +126,8 @@ const PatientSearch = () => {
                     <Thead style={{ backgroundColor: '#44ACCF' }}>
                     <Tr>
                         <Th style={{ color: 'white' }}>Member Name</Th>
-                        <Th style={{ color: 'white' }}></Th>
+                        <Th style={{ color: 'white' }}>DOB</Th>
+                        <Th></Th>
                     </Tr>
                     </Thead>
                     <Tbody >
