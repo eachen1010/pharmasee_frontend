@@ -138,7 +138,6 @@ const DrugSearch = () => {
                             </Tbody>
                         </Table>
                     </TableContainer>
-                    <Button justifyContent="center"> Compare </Button>
                 </div>
             </Flex>
         </Flex>
