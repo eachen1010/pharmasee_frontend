@@ -1,20 +1,25 @@
 import React from 'react';
 import styles from './Navbar.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NavBarLogo from './NavBarLogo.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, Button, MenuList, MenuButton, MenuItem } from "@chakra-ui/react";
 import avatar from './Avatar.png';
 
 const Navbar = () => {
 
   const navigate = useNavigate();
+  const location = useLocation();
   const [showLogout, setShowLogout] = useState(false);
+  const [familyname, setFamilyname] = useState('');
 
   const handleClick = async data => {
     try {
-      navigate('/dashboard');
-      
+      if(familyname === null) {
+        navigate(`/`);
+      } else {
+        navigate(`/dashboard/${familyname}`);
+      }
     } catch (e) {
       console.log(e); //setError('Failed to log in');
     }
@@ -27,6 +32,11 @@ const Navbar = () => {
       console.log(e); //setError('Failed to log in');
     }
   };
+
+  useEffect(() => {
+    const loc = location.pathname.split('/');
+    setFamilyname(loc[loc.length-1]);
+}, [location.pathname]);
 
   return (
     <>
@@ -42,7 +52,7 @@ const Navbar = () => {
       <div style={{ display:'flex', width: '15%', marginBottom: '1vh', borderRadius: '6px', color: 'white' }}>
         <Menu>
           <MenuButton display='flex' justify-content='center' flex-direction='row' className="buttonStyle" style={{ borderTopLeftRadius: '60px 60px', borderBottomLeftRadius: '60px 60px', fontSize: '3.2vh', marginRight: '0px', width: '100%', height: '75px', opacity:'90%', borderWidth: '5px',  borderColor: '#82c9e1'}}> 
-            <strong>TheMillers &nbsp; ▼</strong>
+            <strong>{familyname} &nbsp; ▼</strong>
           </MenuButton>
           <MenuList>
             <MenuItem onClick={handleMenuClick} background='#a6a6a6'>

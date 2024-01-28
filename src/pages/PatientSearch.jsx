@@ -33,16 +33,17 @@ import {
   } from "@chakra-ui/react";
 import { BsFunnel, BsPlusCircle } from "react-icons/bs";
 import { Search2Icon } from '@chakra-ui/icons';
-import { useNavigate, useNavigation } from 'react-router-dom';
+import { useNavigate, useNavigation, useParams } from 'react-router-dom';
 import AddMemberModal from './AddMemberModal.jsx';
 
 const PatientSearch = () => {
 
     const [patients, setPatients] = useState([]);
+    const { familyname } = useParams();
 
     const getPatients = async () => {
         try {
-            const res = await Backend.get(`/family/banhmi`);
+            const res = await Backend.get(`/family/${familyname}`);
             setPatients(res.data);
             console.log('Patients after update:', patients);
             return res.data;
@@ -81,7 +82,7 @@ const PatientSearch = () => {
                         borderColor: '#bec3c9',
                     }}
                     onClick={() => {
-                        navigate('/patient', {state: {"patientMrn": patient.mrn}});   
+                        navigate(`/patient/${familyname}`, {state: {"patientMrn": patient.mrn}});   
                     }}
                     >
                     View

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Backend from '../utils/utils.js';
 import SafeModal from '../pages/SafeUseModal';
@@ -35,9 +36,6 @@ const isStateValid = (state) => {
     return true;
 };
 
-
-
-
 const Patient = () => {
     const [drugList, setDrugList] = useState([]);
     const [value, setValue] = useState('1');
@@ -49,7 +47,6 @@ const Patient = () => {
     const getDrugList = async () => {
         try {
             const res = await Backend.get(`/drugs`);
-            //console.log(res.data);
             setDrugList(res.data);
             
             return res.data;

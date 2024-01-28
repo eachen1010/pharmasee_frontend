@@ -40,11 +40,10 @@ const AddMemberModal = ({}) => {
         dob,
         drugs
       };
-      console.log(user)
+
       onClose();
     
       const response = await Backend.post(`/family/banhmi/create`, user);
-      console.log(`!!!!!!${response}`)
 
     } catch (e) {
         console.log(e);
@@ -80,7 +79,6 @@ const AddMemberModal = ({}) => {
 
   const handleDrugChange = event => {
     let drugResponse = (event.target.value.split(',').map(drug => ({ name: drug.trim(), dosage: '40mg' })))
-    console.log(drugResponse)
     setDrugs(drugResponse);
   };
 

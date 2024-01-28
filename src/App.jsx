@@ -19,10 +19,9 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<PatientSearch />} />
+          <Route path="/dashboard/:familyname" element={<PatientSearch />} />
           <Route path="/signup" element={<SignUp />} />
-          {/* <Route path="/search" element={<DrugSearch />} /> */}
-          <Route path='/patient' element={<Patient />} />
+          <Route path='/patient/:familyname' element={<Patient />} />
           <Route path="/safe-modal" element={<SafeModal />} />
           <Route path="/not-safe-modal" element={<NotSafeModal />} />
           <Route path="/add-member-modal" element={<AddMemberModal />} />

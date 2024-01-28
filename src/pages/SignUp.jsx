@@ -2,6 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 import pharmaseeLogo from '../components/pharmaseeLogo.png';
 import pharmaseeName from '../components/pharmasee.png';
+import Backend from '../utils/utils.js';
 
 import {
     Heading,
@@ -18,19 +19,14 @@ import {
 const SignUp = () => {
 
     const navigate = useNavigate();
-    //const [error, setError] = useState('');
 
-    // useEffect(() => {
-    //     if(currentUser)
-    //     {
-    //         navigate('/search');
-    //     };
-    //   });
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log(event.target.newusername.value)
         try {
-          navigate('/dashboard');
+          const res = await Backend.post(`/family/create/${event.target.newusername.value}`);
+          navigate(`/dashboard/${event.target.newusername.value}`);
+          return res;
         } catch (e) {
           console.log(e);//setError('Failed to log in');
         }

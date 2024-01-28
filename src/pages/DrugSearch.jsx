@@ -42,7 +42,6 @@ const DrugSearch = () => {
     const getDrugList = async () => {
         try {
             const res = await Backend.get(`/drugs`);
-            console.log(res.data);
             setDrugList(res.data);
             
             return res.data;

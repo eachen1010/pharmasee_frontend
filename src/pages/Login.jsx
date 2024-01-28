@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 import pharmaseeLogo from '../components/pharmaseeLogo.png';
 import pharmaseeName from '../components/pharmasee.png';
-
+import Backend from '../utils/utils.js';
 import {
     Heading,
     Flex,
@@ -23,33 +23,16 @@ const Login = () => {
     const handleSubmit = async (event) => {
       event.preventDefault();
       try {
-        // console.log(event.target.elements.username.value);
-        // console.log(event.target.elements.password.value);
+
         const user = event.target.elements.username.value;
-        if (user === "TheMillers")
-        {
-          navigate('/dashboard');
-        }
-        else{
-          alert("Family username does not exist")
-        }
-        // const res = await fetch('./logins.json'); // Assuming logins.json is in the public folder
-        // console.log(res);
-
-
-        // if (!res.ok) {
-        //   throw new Error(`Failed to fetch logins data (${res.status} ${res.statusText})`);
-        // }
-
-        // const loginsData = await res.json();
-        // console.log(loginsData);
-        // const userExists = loginsData.users.includes(user);
-        // if(userExists){
-        //   navigate('/dashboard');
-        // }
-        // else{
-        //   alert("Family username does not exist")
+        console.log(user);
+        const familyData = await Backend.get(`/family/${user}`);
+        console.log(`!!!!${familyData}`);
+        navigate(`/dashboard/${user}`);
+      
+        return familyData;
       } catch (e) {
+        alert("Family username does not exist")
         console.log(e);
       }
     };
