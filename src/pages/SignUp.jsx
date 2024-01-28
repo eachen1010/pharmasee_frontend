@@ -11,7 +11,6 @@ import {
     Stack,
     Box,
     FormControl,
-    FormHelperText,
     Image
   } from "@chakra-ui/react";
   

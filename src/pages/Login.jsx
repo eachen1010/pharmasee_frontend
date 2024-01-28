@@ -13,7 +13,6 @@ import {
     FormControl,
     FormHelperText,
     Image,
-    Text,
     Link
   } from "@chakra-ui/react";
   
@@ -35,6 +34,17 @@ const Login = () => {
         try {
           navigate('/dashboard');
           //reset();
+        } catch (e) {
+          console.log(e);//setError('Failed to log in');
+        }
+      };
+
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        //const { username, password } = data;
+        try {
+          console.log("Submitted form eeeee");
+          console.log(event.target.elements);
         } catch (e) {
           console.log(e);//setError('Failed to log in');
         }
@@ -79,7 +89,7 @@ const Login = () => {
             </Box>
 
             <Box minW={{ base: "50%"}}>
-                <form >
+                <form onSubmit={handleSubmit}>
                   <Stack
                     spacing={2}
                     backgroundColor="whiteAlpha.900"
@@ -89,14 +99,14 @@ const Login = () => {
                     alignItems = "center"
                     justifyContent = "center"
                   >
-                    <FormControl justifyContent = "center">
-                        <Input type="username" placeholder="Family Username" />
+                    <FormControl id="username" isRequired>
+                        <Input type="text" placeholder="Family Username" />
                     </FormControl>
-                    <FormControl>
-                        <Input type={"password"} placeholder="Password"/>
-                    <FormHelperText textAlign="right" color = "gray" textDecoration = "underline">
-                        <p> Forgot password?</p>
-                    </FormHelperText>
+                    <FormControl id="password" isRequired>
+                      <Input type="text" placeholder="Password"/>
+                      <FormHelperText textAlign="right" color = "gray" textDecoration = "underline">
+                          <p> Forgot password?</p>
+                      </FormHelperText>
                     </FormControl>
 
                     <Button
@@ -110,7 +120,7 @@ const Login = () => {
                     >
                       Login
                     </Button>
-
+    
                     <Stack
                       flexDir = "row"
                       justifyContent = "center"
