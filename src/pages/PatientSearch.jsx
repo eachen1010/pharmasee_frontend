@@ -40,6 +40,7 @@ const PatientSearch = () => {
 
     const [patients, setPatients] = useState([]);
     const { familyname } = useParams();
+    const [searchInput, setSearchInput] = useState('');
 
     const getPatients = async () => {
         try {
@@ -51,6 +52,19 @@ const PatientSearch = () => {
             console.log(err);
           }
     };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log(event.target.patientname.value)
+        try {
+            setSearchInput(event.target.patientname.value);
+          const res = await Backend.get(`/family/${familyname}/${event.target.patientname.value}`);
+          setPatients(res.data);
+          return res;
+        } catch (e) {
+          console.log(e);//setError('Failed to log in');
+        }
+      };
 
     const PatientTableEntry = ( {patient} ) => {
         const navigate = useNavigate();
@@ -94,6 +108,10 @@ const PatientSearch = () => {
 
     useEffect(() => {
         getPatients();
+    }, [searchInput]);
+
+    useEffect(() => {
+        getPatients();
     }, []);
     
     return (
@@ -119,10 +137,10 @@ const PatientSearch = () => {
                         <InputLeftElement pointerEvents='none'>
                         <Search2Icon color='gray.300' />
                         </InputLeftElement>
-                        <Input width='75vw' placeholder='Enter Member Name' />
+                        <Input width='75vw' placeholder='Enter Member Name' id="patientname" />
                     </InputGroup>
                     <InputGroup alignItems="right">
-                        <Button backgroundColor="#44ACCF"><Search2Icon style={{ color: 'white' }} /></Button>
+                        <Button backgroundColor="#44ACCF" onSubmit={handleSubmit}><Search2Icon style={{ color: 'white' }} /></Button>
                     </InputGroup>
                 </Stack>
                 <TableContainer width='81vw' marginTop='5vh' overflowY='scroll'>
